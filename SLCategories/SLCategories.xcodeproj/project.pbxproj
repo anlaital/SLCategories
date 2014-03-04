@@ -14,6 +14,9 @@
 		7343DE0918C4678D00230564 /* UIColor+SLCategoriesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7343DE0718C4678D00230564 /* UIColor+SLCategoriesTests.m */; };
 		7343DE0F18C4686F00230564 /* UIView+SLCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 7343DE0E18C4686F00230564 /* UIView+SLCategories.m */; };
 		7343DE1218C468F200230564 /* NSNotificationCenter+SLCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 7343DE1118C468F200230564 /* NSNotificationCenter+SLCategories.m */; };
+		7343DE1518C5E33F00230564 /* NSData+SLCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 7343DE1418C5E33F00230564 /* NSData+SLCategories.m */; };
+		7343DE1818C5E35400230564 /* NSString+SLCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 7343DE1718C5E35400230564 /* NSString+SLCategories.m */; };
+		7343DE1A18C5E8EC00230564 /* NSString+SLCategoriesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7343DE1918C5E8EC00230564 /* NSString+SLCategoriesTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,11 @@
 		7343DE0E18C4686F00230564 /* UIView+SLCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SLCategories.m"; sourceTree = "<group>"; };
 		7343DE1018C468F200230564 /* NSNotificationCenter+SLCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+SLCategories.h"; sourceTree = "<group>"; };
 		7343DE1118C468F200230564 /* NSNotificationCenter+SLCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+SLCategories.m"; sourceTree = "<group>"; };
+		7343DE1318C5E33F00230564 /* NSData+SLCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SLCategories.h"; sourceTree = "<group>"; };
+		7343DE1418C5E33F00230564 /* NSData+SLCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SLCategories.m"; sourceTree = "<group>"; };
+		7343DE1618C5E35400230564 /* NSString+SLCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SLCategories.h"; sourceTree = "<group>"; };
+		7343DE1718C5E35400230564 /* NSString+SLCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SLCategories.m"; sourceTree = "<group>"; };
+		7343DE1918C5E8EC00230564 /* NSString+SLCategoriesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SLCategoriesTests.m"; path = "Tests/NSString+SLCategoriesTests.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +87,17 @@
 		7343DDCA18C396DB00230564 /* SLCategories */ = {
 			isa = PBXGroup;
 			children = (
-				7343DE0318C4676300230564 /* UIColor+SLCategories.h */,
-				7343DE0418C4676300230564 /* UIColor+SLCategories.m */,
-				7343DDCB18C396DB00230564 /* Supporting Files */,
-				7343DE0D18C4686F00230564 /* UIView+SLCategories.h */,
-				7343DE0E18C4686F00230564 /* UIView+SLCategories.m */,
+				7343DE1318C5E33F00230564 /* NSData+SLCategories.h */,
+				7343DE1418C5E33F00230564 /* NSData+SLCategories.m */,
 				7343DE1018C468F200230564 /* NSNotificationCenter+SLCategories.h */,
 				7343DE1118C468F200230564 /* NSNotificationCenter+SLCategories.m */,
+				7343DE1618C5E35400230564 /* NSString+SLCategories.h */,
+				7343DE1718C5E35400230564 /* NSString+SLCategories.m */,
+				7343DDCB18C396DB00230564 /* Supporting Files */,
+				7343DE0318C4676300230564 /* UIColor+SLCategories.h */,
+				7343DE0418C4676300230564 /* UIColor+SLCategories.m */,
+				7343DE0D18C4686F00230564 /* UIView+SLCategories.h */,
+				7343DE0E18C4686F00230564 /* UIView+SLCategories.m */,
 			);
 			path = SLCategories;
 			sourceTree = "<group>";
@@ -102,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				7343DE0718C4678D00230564 /* UIColor+SLCategoriesTests.m */,
+				7343DE1918C5E8EC00230564 /* NSString+SLCategoriesTests.m */,
 				7343DDED18C396DB00230564 /* Supporting Files */,
 			);
 			path = SLCategoriesTests;
@@ -182,9 +195,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7343DE0918C4678D00230564 /* UIColor+SLCategoriesTests.m in Sources */,
+				7343DE1518C5E33F00230564 /* NSData+SLCategories.m in Sources */,
+				7343DE1818C5E35400230564 /* NSString+SLCategories.m in Sources */,
 				7343DE0F18C4686F00230564 /* UIView+SLCategories.m in Sources */,
 				7343DE0518C4676300230564 /* UIColor+SLCategories.m in Sources */,
 				7343DE1218C468F200230564 /* NSNotificationCenter+SLCategories.m in Sources */,
+				7343DE1A18C5E8EC00230564 /* NSString+SLCategoriesTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +342,7 @@
 				7343DDFB18C396DB00230564 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

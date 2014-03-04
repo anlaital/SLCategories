@@ -29,11 +29,30 @@
 - (void)testHex
 {
     UIColor *color;
-    const CGFloat *components;
+    const CGFloat *c;
     
-    color = [UIColor colorFromHex:@"#ffffff"];
-    components = CGColorGetComponents(color.CGColor);
-    XCTAssert(components[0] == 1.0 && components[1] == 1.0 && components[2] == 1.0 && components[3] == 1.0);
+    color = [UIColor colorFromHex:@"#ff05ff"];
+    c = CGColorGetComponents(color.CGColor);
+    XCTAssert(c[0] == 1 && c[1] * 255 == 5 && c[2] == 1 && c[3] == 1);
+
+    color = [UIColor colorFromHex:@"FfaAb"];
+    c = CGColorGetComponents(color.CGColor);
+    XCTAssert(c[0] * 255 == 15 && c[1] * 255 == 250 && c[2] * 255 == 171 && c[3] == 1);
+
+    color = [UIColor colorFromHex:@"#FF050008" format:SLColorFormatRGBA8];
+    c = CGColorGetComponents(color.CGColor);
+    XCTAssert(c[0] == 1 && c[1] * 255 == 5 && c[2] == 0 && c[3] * 255 == 8);
+    
+    NSString *hex = nil;
+
+    hex = [[UIColor whiteColor] hexStringWithFormat:SLColorFormatRGBA8 prependHash:YES];
+    XCTAssert([hex isEqualToString:@"#ffffffff"]);
+    
+    hex = [[[UIColor blueColor] colorWithAlphaComponent:50.0/255] hexStringWithFormat:SLColorFormatRGBA8 prependHash:NO];
+    XCTAssert([hex isEqualToString:@"0000ff32"]);
+    
+    hex = [[UIColor colorWithRed:32.0/255 green:242.0/255 blue:2.0/255 alpha:12.0/255] hexStringWithFormat:SLColorFormatRGB8 prependHash:YES];
+    XCTAssert([hex isEqualToString:@"#20f202"]);
 }
 
 @end
