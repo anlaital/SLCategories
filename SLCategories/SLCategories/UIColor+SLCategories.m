@@ -56,36 +56,56 @@
 {
     NSString *prefix = prependHash ? @"#" : @"";
 
-    CGFloat r, g, b, a;
-    const CGFloat *c = CGColorGetComponents(self.CGColor);
-    switch (CGColorSpaceGetModel(CGColorGetColorSpace(self.CGColor))) {
-        case kCGColorSpaceModelMonochrome:
-            r = g = b = c[0];
-            a = c[1];
-            break;
-        case kCGColorSpaceModelRGB:
-            r = c[0];
-            g = c[1];
-            b = c[2];
-            a = c[3];
-            break;
-        default:
-            return nil;
-    }
-    
-    NSUInteger red = r * 255;
-    NSUInteger green = g * 255;
-    NSUInteger blue = b * 255;
-    NSUInteger alpha = a * 255;
+    SLColorComponents c = self.components;
+    NSUInteger r = c.r * 255;
+    NSUInteger g = c.g * 255;
+    NSUInteger b = c.b * 255;
+    NSUInteger a = c.a * 255;
     
     switch (format) {
         case SLColorFormatRGB8:
-            return [NSString stringWithFormat:@"%@%02x%02x%02x", prefix, red, green, blue];
+            return [NSString stringWithFormat:@"%@%02x%02x%02x", prefix, r, g, b];
         case SLColorFormatRGBA8:
-            return [NSString stringWithFormat:@"%@%02x%02x%02x%02x", prefix, red, green, blue, alpha];
+            return [NSString stringWithFormat:@"%@%02x%02x%02x%02x", prefix, r, g, b, a];
         default:
             return nil;
     }
+}
+
+- (SLColorComponents)components
+{
+    SLColorComponents components;
+    const CGFloat *c = CGColorGetComponents(self.CGColor);
+    switch (CGColorSpaceGetModel(CGColorGetColorSpace(self.CGColor))) {
+        case kCGColorSpaceModelMonochrome:
+            components.r = components.g = components.b = c[0];
+            components.a = c[1];
+            break;
+        case kCGColorSpaceModelRGB:
+            components.r = c[0];
+            components.g = c[1];
+            components.b = c[2];
+            components.a = c[3];
+            break;
+        default:
+            break;
+    }
+    return components;
+}
+
+- (CGFloat)luminosity
+{
+    SLColorComponents c = self.components;
+    return 0.2126 * pow(c.r, 2.2) + 0.7152 * pow(c.g, 2.2) + 0.0722 * pow(c.b, 2.2);
+}
+
+- (CGFloat)luminosityDifferenceWithColor:(UIColor *)color
+{
+    CGFloat l0 = self.luminosity;
+    CGFloat l1 = color.luminosity;
+    if (l0 > l1)
+        return (l0 + 0.05) / (l1 + 0.05);
+    return (l1 + 0.05) / (l0 + 0.05);
 }
 
 @end
