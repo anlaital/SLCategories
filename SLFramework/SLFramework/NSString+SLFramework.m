@@ -1,6 +1,6 @@
 //
-//  NSString+SLCategories.m
-//  SLCategories
+//  NSString+SLFramework.m
+//  SLFramework
 //
 //  Created by Antti Laitala on 04/03/14.
 //
@@ -8,9 +8,9 @@
 
 #import <CommonCrypto/CommonCrypto.h>
 
-#import "NSString+SLCategories.h"
+#import "NSString+SLFramework.h"
 
-@implementation NSString (SLCategories)
+@implementation NSString (SLFramework)
 
 - (NSString *)hex
 {

@@ -1,14 +1,14 @@
 //
-//  UIColor+SLCategories.m
-//  SLCategories
+//  UIColor+SLFramework.m
+//  SLFramework
 //
 //  Created by Antti Laitala on 02/03/14.
 //
 //
 
-#import "UIColor+SLCategories.h"
+#import "UIColor+SLFramework.h"
 
-@implementation UIColor (SLCategories)
+@implementation UIColor (SLFramework)
 
 + (UIColor *)colorFromHex:(NSString *)hex
 {
@@ -101,11 +101,11 @@
 
 - (CGFloat)luminosityDifferenceWithColor:(UIColor *)color
 {
-    CGFloat l0 = self.luminosity;
-    CGFloat l1 = color.luminosity;
-    if (l0 > l1)
-        return (l0 + 0.05) / (l1 + 0.05);
-    return (l1 + 0.05) / (l0 + 0.05);
+    CGFloat myLuminosity = self.luminosity;
+    CGFloat otherLuminosity = color.luminosity;
+    if (myLuminosity > otherLuminosity)
+        return (myLuminosity + 0.05) / (otherLuminosity + 0.05);
+    return (otherLuminosity + 0.05) / (myLuminosity + 0.05);
 }
 
 @end

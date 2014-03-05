@@ -1,6 +1,6 @@
 //
-//  UIColor+SLCategories.h
-//  SLCategories
+//  UIColor+SLFramework.h
+//  SLFramework
 //
 //  Created by Antti Laitala on 02/03/14.
 //
@@ -17,7 +17,7 @@ typedef struct {
     CGFloat r, g, b, a;
 } SLColorComponents;
 
-@interface UIColor (SLCategories)
+@interface UIColor (SLFramework)
 
 + (UIColor *)colorFromHex:(NSString *)hex;
 + (UIColor *)colorFromHex:(NSString *)hex format:(SLColorFormat)format;

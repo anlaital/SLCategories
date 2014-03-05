@@ -1,14 +1,14 @@
 //
-//  UIView+SLCategories.m
-//  SLCategories
+//  UIView+SLFramework.m
+//  SLFramework
 //
 //  Created by Antti Laitala on 03/03/14.
 //
 //
 
-#import "UIView+SLCategories.h"
+#import "UIView+SLFramework.h"
 
-@implementation UIView (SLCategories)
+@implementation UIView (SLFramework)
 
 - (CGFloat)x
 {

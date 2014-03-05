@@ -1,6 +1,6 @@
 //
-//  NSNotificationCenter+SLCategories.h
-//  SLCategories
+//  NSNotificationCenter+SLFramework.h
+//  SLFramework
 //
 //  Created by Antti Laitala on 03/03/14.
 //
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSNotificationCenter (SLCategories)
+@interface NSNotificationCenter (SLFramework)
 
 - (BOOL)safelyRemoveObserver:(id)observer;
 - (BOOL)safelyRemoveObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath;

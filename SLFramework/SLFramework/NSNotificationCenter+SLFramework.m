@@ -1,14 +1,14 @@
 //
-//  NSNotificationCenter+SLCategories.m
-//  SLCategories
+//  NSNotificationCenter+SLFramework.m
+//  SLFramework
 //
 //  Created by Antti Laitala on 03/03/14.
 //
 //
 
-#import "NSNotificationCenter+SLCategories.h"
+#import "NSNotificationCenter+SLFramework.h"
 
-@implementation NSNotificationCenter (SLCategories)
+@implementation NSNotificationCenter (SLFramework)
 
 - (BOOL)safelyRemoveObserver:(id)observer
 {
