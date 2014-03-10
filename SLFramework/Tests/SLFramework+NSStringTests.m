@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "NSString+SLFramework.h"
+#import "SLFunctions.h"
 
 @interface NSString_SLFrameworkTests : XCTestCase
 
@@ -19,6 +20,9 @@
 - (void)setUp
 {
     [super setUp];
+    
+    time_t uptime = [SLFunctions uptime];
+    NSLog(@"%ld", uptime);
 }
 
 - (void)tearDown

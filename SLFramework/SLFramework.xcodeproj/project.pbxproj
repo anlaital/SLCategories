@@ -10,10 +10,19 @@
 		7310E02B18C73BA700DB5EF0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7343DDE618C396DB00230564 /* XCTest.framework */; };
 		7310E02C18C73BA700DB5EF0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7343DDC418C396DB00230564 /* Foundation.framework */; };
 		7310E02D18C73BA700DB5EF0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7343DDC818C396DB00230564 /* UIKit.framework */; };
-		7310E03D18C7402000DB5EF0 /* SLFrameworkTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7310E03A18C7402000DB5EF0 /* SLFrameworkTests-Info.plist */; };
 		7310E03E18C7402000DB5EF0 /* SLFrameworkTests-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 7310E03B18C7402000DB5EF0 /* SLFrameworkTests-Prefix.pch */; };
 		7310E04118C7406000DB5EF0 /* SLFramework+UIColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E04018C7406000DB5EF0 /* SLFramework+UIColorTests.m */; };
 		7310E04318C740C900DB5EF0 /* SLFramework+NSStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E04218C740C900DB5EF0 /* SLFramework+NSStringTests.m */; };
+		7310E04B18C742B500DB5EF0 /* SLTicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E04A18C742B500DB5EF0 /* SLTicker.m */; };
+		737FDE9018C9A3AB0000BE9B /* SLFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 737FDE8F18C9A3AB0000BE9B /* SLFunctions.m */; };
+		737FDE9318C9A3DB0000BE9B /* SLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 737FDE9218C9A3DB0000BE9B /* SLLogger.m */; };
+		73EBA4BA18CBC81B003BE24A /* NSObject+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA4B918CBC81B003BE24A /* NSObject+SLFramework.m */; };
+		73EBA4C018CDB566003BE24A /* SLFramework+NSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA4BF18CDB566003BE24A /* SLFramework+NSObject.m */; };
+		73EBA4C118CDC676003BE24A /* NSData+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01818C739E100DB5EF0 /* NSData+SLFramework.m */; };
+		73EBA4C218CDC676003BE24A /* NSNotificationCenter+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01A18C739E100DB5EF0 /* NSNotificationCenter+SLFramework.m */; };
+		73EBA4C318CDC676003BE24A /* NSString+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01C18C739E100DB5EF0 /* NSString+SLFramework.m */; };
+		73EBA4C418CDC676003BE24A /* UIColor+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01E18C739E100DB5EF0 /* UIColor+SLFramework.m */; };
+		73EBA4C518CDC676003BE24A /* UIView+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E02018C739E100DB5EF0 /* UIView+SLFramework.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,15 +37,24 @@
 		7310E01F18C739E100DB5EF0 /* UIView+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+SLFramework.h"; path = "SLFramework/UIView+SLFramework.h"; sourceTree = SOURCE_ROOT; };
 		7310E02018C739E100DB5EF0 /* UIView+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+SLFramework.m"; path = "SLFramework/UIView+SLFramework.m"; sourceTree = SOURCE_ROOT; };
 		7310E02A18C73BA700DB5EF0 /* SLFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SLFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7310E03A18C7402000DB5EF0 /* SLFrameworkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SLFrameworkTests-Info.plist"; sourceTree = "<group>"; };
-		7310E03B18C7402000DB5EF0 /* SLFrameworkTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SLFrameworkTests-Prefix.pch"; sourceTree = "<group>"; };
+		7310E03A18C7402000DB5EF0 /* SLFrameworkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SLFrameworkTests-Info.plist"; sourceTree = "<group>"; };
+		7310E03B18C7402000DB5EF0 /* SLFrameworkTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLFrameworkTests-Prefix.pch"; sourceTree = "<group>"; };
 		7310E04018C7406000DB5EF0 /* SLFramework+UIColorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SLFramework+UIColorTests.m"; sourceTree = "<group>"; };
 		7310E04218C740C900DB5EF0 /* SLFramework+NSStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SLFramework+NSStringTests.m"; sourceTree = "<group>"; };
+		7310E04918C742B500DB5EF0 /* SLTicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLTicker.h; path = SLFramework/SLTicker.h; sourceTree = SOURCE_ROOT; };
+		7310E04A18C742B500DB5EF0 /* SLTicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLTicker.m; path = SLFramework/SLTicker.m; sourceTree = SOURCE_ROOT; };
 		7343DDC418C396DB00230564 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7343DDC618C396DB00230564 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7343DDC818C396DB00230564 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7343DDE618C396DB00230564 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7343DE0218C4675B00230564 /* SLFramework-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SLFramework-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		737FDE8E18C9A3AB0000BE9B /* SLFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLFunctions.h; path = SLFramework/SLFunctions.h; sourceTree = SOURCE_ROOT; };
+		737FDE8F18C9A3AB0000BE9B /* SLFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLFunctions.m; path = SLFramework/SLFunctions.m; sourceTree = SOURCE_ROOT; };
+		737FDE9118C9A3DB0000BE9B /* SLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLLogger.h; path = SLFramework/SLLogger.h; sourceTree = SOURCE_ROOT; };
+		737FDE9218C9A3DB0000BE9B /* SLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLLogger.m; path = SLFramework/SLLogger.m; sourceTree = SOURCE_ROOT; };
+		73EBA4B818CBC81B003BE24A /* NSObject+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SLFramework.h"; path = "SLFramework/NSObject+SLFramework.h"; sourceTree = SOURCE_ROOT; };
+		73EBA4B918CBC81B003BE24A /* NSObject+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SLFramework.m"; path = "SLFramework/NSObject+SLFramework.m"; sourceTree = SOURCE_ROOT; };
+		73EBA4BF18CDB566003BE24A /* SLFramework+NSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SLFramework+NSObject.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +77,7 @@
 				7310E03F18C7403B00DB5EF0 /* Supporting Files */,
 				7310E04018C7406000DB5EF0 /* SLFramework+UIColorTests.m */,
 				7310E04218C740C900DB5EF0 /* SLFramework+NSStringTests.m */,
+				73EBA4BF18CDB566003BE24A /* SLFramework+NSObject.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -115,6 +134,14 @@
 				7310E01F18C739E100DB5EF0 /* UIView+SLFramework.h */,
 				7310E02018C739E100DB5EF0 /* UIView+SLFramework.m */,
 				7343DDCB18C396DB00230564 /* Supporting Files */,
+				7310E04918C742B500DB5EF0 /* SLTicker.h */,
+				7310E04A18C742B500DB5EF0 /* SLTicker.m */,
+				737FDE8E18C9A3AB0000BE9B /* SLFunctions.h */,
+				737FDE8F18C9A3AB0000BE9B /* SLFunctions.m */,
+				737FDE9118C9A3DB0000BE9B /* SLLogger.h */,
+				737FDE9218C9A3DB0000BE9B /* SLLogger.m */,
+				73EBA4B818CBC81B003BE24A /* NSObject+SLFramework.h */,
+				73EBA4B918CBC81B003BE24A /* NSObject+SLFramework.m */,
 			);
 			name = SLFramework;
 			path = SLCategories;
@@ -179,7 +206,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7310E03D18C7402000DB5EF0 /* SLFrameworkTests-Info.plist in Resources */,
 				7310E03E18C7402000DB5EF0 /* SLFrameworkTests-Prefix.pch in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,8 +217,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73EBA4C118CDC676003BE24A /* NSData+SLFramework.m in Sources */,
+				73EBA4C218CDC676003BE24A /* NSNotificationCenter+SLFramework.m in Sources */,
+				73EBA4C318CDC676003BE24A /* NSString+SLFramework.m in Sources */,
+				73EBA4C418CDC676003BE24A /* UIColor+SLFramework.m in Sources */,
+				73EBA4C518CDC676003BE24A /* UIView+SLFramework.m in Sources */,
+				737FDE9018C9A3AB0000BE9B /* SLFunctions.m in Sources */,
 				7310E04118C7406000DB5EF0 /* SLFramework+UIColorTests.m in Sources */,
+				7310E04B18C742B500DB5EF0 /* SLTicker.m in Sources */,
 				7310E04318C740C900DB5EF0 /* SLFramework+NSStringTests.m in Sources */,
+				737FDE9318C9A3DB0000BE9B /* SLLogger.m in Sources */,
+				73EBA4BA18CBC81B003BE24A /* NSObject+SLFramework.m in Sources */,
+				73EBA4C018CDB566003BE24A /* SLFramework+NSObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,12 +245,12 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SLFrameworkTests/SLFrameworkTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Tests/SLFrameworkTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "SLFrameworkTests/SLFrameworkTests-Info.plist";
+				INFOPLIST_FILE = "Tests/SLFrameworkTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -230,8 +266,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SLFrameworkTests/SLFrameworkTests-Prefix.pch";
-				INFOPLIST_FILE = "SLFrameworkTests/SLFrameworkTests-Info.plist";
+				GCC_PREFIX_HEADER = "Tests/SLFrameworkTests-Prefix.pch";
+				INFOPLIST_FILE = "Tests/SLFrameworkTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -321,6 +357,7 @@
 				7310E03918C73BA700DB5EF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7343DDBC18C396DB00230564 /* Build configuration list for PBXProject "SLFramework" */ = {
 			isa = XCConfigurationList;
