@@ -57,7 +57,7 @@
                 NSString *documentsDirectory = paths[0];
                 NSString *path = [documentsDirectory stringByAppendingPathComponent:@"SLLog.txt"];
                 if (![[NSFileManager defaultManager] isWritableFileAtPath:path])
-                    [[NSData data] writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+                    [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
                 debugFileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
                 unsigned long long offset = [debugFileHandle seekToEndOfFile];
                 if (offset >= _maxLogFileSize)
