@@ -62,11 +62,67 @@
     
     unsigned char digest[digestLength];
     const char *bytes = message.UTF8String;
-    hashFunctionPtr(bytes, strlen(bytes), digest);
+    hashFunctionPtr(bytes, (CC_LONG)strlen(bytes), digest);
     
     NSMutableString *result = [NSMutableString stringWithCapacity:digestLength * 2];
     for(int i = 0; i < digestLength; ++i)
         [result appendFormat:@"%02x", digest[i]];
+    return result;
+}
+
+- (NSString *)snakeCaseString
+{
+    return [self __casefiedStringUsingDelimiter:'_' uppercase:NO];
+}
+
+- (NSString *)screamingSnakeCaseString
+{
+    return [self __casefiedStringUsingDelimiter:'_' uppercase:YES];
+}
+
+- (NSString *)spinalCaseString
+{
+    return [self __casefiedStringUsingDelimiter:'-' uppercase:NO];
+}
+
+- (NSString *)trainCaseString
+{
+    return [self __casefiedStringUsingDelimiter:'-' uppercase:YES];
+}
+
+#pragma mark - Private
+
+- (NSString *)__casefiedStringUsingDelimiter:(unichar)delimiter uppercase:(BOOL)uppercase
+{
+    NSMutableString *result = self.mutableCopy;
+    
+    NSUInteger replaceLocation = NSNotFound;
+    NSUInteger replaceLength = 0;
+    NSUInteger count = 0;
+    
+    const char *bytes = self.UTF8String;
+    size_t size = strlen(bytes);
+    for (int i = 0; i < size; ++i) {
+        const char byte = bytes[i];
+        
+        if ((byte >= 'A' && byte <= 'Z')) {
+            replaceLocation = MIN(replaceLocation, i + count);
+            replaceLength++;
+            if (i != size - 1)
+                continue;
+        }
+        
+        if (replaceLocation != NSNotFound) {
+            NSRange replaceRange = NSMakeRange(replaceLocation, replaceLength);
+            NSString *replacement = uppercase ? [result substringWithRange:replaceRange].uppercaseString : [result substringWithRange:replaceRange].lowercaseString;
+            [result replaceCharactersInRange:replaceRange withString:replaceLocation > 0 ? [NSString stringWithFormat:@"%c%@", delimiter, replacement] : replacement];
+            
+            count++;
+            replaceLocation = NSNotFound;
+            replaceLength = 0;
+        }
+    }
+    
     return result;
 }
 

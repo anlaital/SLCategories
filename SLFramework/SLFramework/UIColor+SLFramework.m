@@ -28,7 +28,7 @@
     NSScanner *scanner = [NSScanner scannerWithString:hex];
     scanner.charactersToBeSkipped = charactersToBeSkipped;
 
-    NSUInteger value;
+    unsigned value;
     if ([scanner scanHexInt:&value]) {
         CGFloat r, g, b, a = 255;
         switch (format) {
@@ -57,10 +57,10 @@
     NSString *prefix = prependHash ? @"#" : @"";
 
     SLColorComponents c = self.components;
-    NSUInteger r = c.r * 255;
-    NSUInteger g = c.g * 255;
-    NSUInteger b = c.b * 255;
-    NSUInteger a = c.a * 255;
+    unsigned r = c.r * 255;
+    unsigned g = c.g * 255;
+    unsigned b = c.b * 255;
+    unsigned a = c.a * 255;
     
     switch (format) {
         case SLColorFormatRGB8:

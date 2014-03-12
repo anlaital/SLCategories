@@ -63,4 +63,30 @@
     XCTAssert([digest isEqualToString:@"4aa8fa7d2bc0c7dd04f44eb3a133722ae4d79806a709af003307ae4a2a80f7d7e115fa207f8ba3ccfc13fd02207de31f404167e9c62e4a957fb8e5bcf0c79067"]);
 }
 
+- (void)testSnakeCase
+{
+    NSString *string = nil;
+    
+    string = @"lowercasestring";
+    XCTAssert([string.snakeCaseString isEqualToString:string]);
+
+    string = @"imageUrl";
+    XCTAssert([string.snakeCaseString isEqualToString:@"image_url"]);
+
+    string = @"imageURL";
+    XCTAssert([string.snakeCaseString isEqualToString:@"image_url"]);
+    
+    string = @"downloadImageUrlWithURL50";
+    XCTAssert([string.snakeCaseString isEqualToString:@"download_image_url_with_url50"]);
+    
+    string = @"60numeric";
+    XCTAssert([string.snakeCaseString isEqualToString:@"60numeric"]);
+    
+    string = @"42";
+    XCTAssert([string.snakeCaseString isEqualToString:@"42"]);
+    
+    string = @"resolution268x268";
+    XCTAssert([string.snakeCaseString isEqualToString:@"resolution268x268"]);
+}
+
 @end
