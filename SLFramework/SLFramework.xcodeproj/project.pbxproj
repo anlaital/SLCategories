@@ -14,16 +14,19 @@
 		7310E04118C7406000DB5EF0 /* SLFramework+UIColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E04018C7406000DB5EF0 /* SLFramework+UIColorTests.m */; };
 		7310E04318C740C900DB5EF0 /* SLFramework+NSStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E04218C740C900DB5EF0 /* SLFramework+NSStringTests.m */; };
 		7310E04B18C742B500DB5EF0 /* SLTicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E04A18C742B500DB5EF0 /* SLTicker.m */; };
+		73716CB218D1DA3B004409A1 /* SLFunctionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73716CB118D1DA3B004409A1 /* SLFunctionsTests.m */; };
+		73716CB518D2D648004409A1 /* SLError.m in Sources */ = {isa = PBXBuildFile; fileRef = 73716CB418D2D648004409A1 /* SLError.m */; };
 		737FDE9018C9A3AB0000BE9B /* SLFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 737FDE8F18C9A3AB0000BE9B /* SLFunctions.m */; };
 		737FDE9318C9A3DB0000BE9B /* SLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 737FDE9218C9A3DB0000BE9B /* SLLogger.m */; };
 		73EBA4BA18CBC81B003BE24A /* NSObject+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA4B918CBC81B003BE24A /* NSObject+SLFramework.m */; };
-		73EBA4C018CDB566003BE24A /* SLFramework+NSObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA4BF18CDB566003BE24A /* SLFramework+NSObjectTests.m */; };
 		73EBA4C118CDC676003BE24A /* NSData+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01818C739E100DB5EF0 /* NSData+SLFramework.m */; };
 		73EBA4C218CDC676003BE24A /* NSNotificationCenter+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01A18C739E100DB5EF0 /* NSNotificationCenter+SLFramework.m */; };
 		73EBA4C318CDC676003BE24A /* NSString+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01C18C739E100DB5EF0 /* NSString+SLFramework.m */; };
 		73EBA4C418CDC676003BE24A /* UIColor+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01E18C739E100DB5EF0 /* UIColor+SLFramework.m */; };
 		73EBA4C518CDC676003BE24A /* UIView+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E02018C739E100DB5EF0 /* UIView+SLFramework.m */; };
 		73EBA4C718CDD9BF003BE24A /* SLLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA4C618CDD9BF003BE24A /* SLLoggerTests.m */; };
+		73EBA4CD18CDDCD2003BE24A /* SLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA4CC18CDDCD2003BE24A /* SLModel.m */; };
+		73EBA4CF18CDEF34003BE24A /* SLModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA4CE18CDEF34003BE24A /* SLModelTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,14 +52,19 @@
 		7343DDC818C396DB00230564 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7343DDE618C396DB00230564 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7343DE0218C4675B00230564 /* SLFramework-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SLFramework-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		73716CB118D1DA3B004409A1 /* SLFunctionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFunctionsTests.m; sourceTree = "<group>"; };
+		73716CB318D2D648004409A1 /* SLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLError.h; path = SLFramework/SLError.h; sourceTree = SOURCE_ROOT; };
+		73716CB418D2D648004409A1 /* SLError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLError.m; path = SLFramework/SLError.m; sourceTree = SOURCE_ROOT; };
 		737FDE8E18C9A3AB0000BE9B /* SLFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLFunctions.h; path = SLFramework/SLFunctions.h; sourceTree = SOURCE_ROOT; };
 		737FDE8F18C9A3AB0000BE9B /* SLFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLFunctions.m; path = SLFramework/SLFunctions.m; sourceTree = SOURCE_ROOT; };
 		737FDE9118C9A3DB0000BE9B /* SLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLLogger.h; path = SLFramework/SLLogger.h; sourceTree = SOURCE_ROOT; };
 		737FDE9218C9A3DB0000BE9B /* SLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLLogger.m; path = SLFramework/SLLogger.m; sourceTree = SOURCE_ROOT; };
 		73EBA4B818CBC81B003BE24A /* NSObject+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SLFramework.h"; path = "SLFramework/NSObject+SLFramework.h"; sourceTree = SOURCE_ROOT; };
 		73EBA4B918CBC81B003BE24A /* NSObject+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SLFramework.m"; path = "SLFramework/NSObject+SLFramework.m"; sourceTree = SOURCE_ROOT; };
-		73EBA4BF18CDB566003BE24A /* SLFramework+NSObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SLFramework+NSObjectTests.m"; sourceTree = "<group>"; };
 		73EBA4C618CDD9BF003BE24A /* SLLoggerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLLoggerTests.m; sourceTree = "<group>"; };
+		73EBA4CB18CDDCD2003BE24A /* SLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLModel.h; path = SLFramework/SLModel.h; sourceTree = SOURCE_ROOT; };
+		73EBA4CC18CDDCD2003BE24A /* SLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLModel.m; path = SLFramework/SLModel.m; sourceTree = SOURCE_ROOT; };
+		73EBA4CE18CDEF34003BE24A /* SLModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLModelTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +87,9 @@
 				7310E03F18C7403B00DB5EF0 /* Supporting Files */,
 				7310E04018C7406000DB5EF0 /* SLFramework+UIColorTests.m */,
 				7310E04218C740C900DB5EF0 /* SLFramework+NSStringTests.m */,
-				73EBA4BF18CDB566003BE24A /* SLFramework+NSObjectTests.m */,
 				73EBA4C618CDD9BF003BE24A /* SLLoggerTests.m */,
+				73EBA4CE18CDEF34003BE24A /* SLModelTests.m */,
+				73716CB118D1DA3B004409A1 /* SLFunctionsTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -126,6 +135,7 @@
 		7343DDCA18C396DB00230564 /* SLFramework */ = {
 			isa = PBXGroup;
 			children = (
+				7343DDCB18C396DB00230564 /* Supporting Files */,
 				7310E01718C739E100DB5EF0 /* NSData+SLFramework.h */,
 				7310E01818C739E100DB5EF0 /* NSData+SLFramework.m */,
 				7310E01918C739E100DB5EF0 /* NSNotificationCenter+SLFramework.h */,
@@ -136,7 +146,6 @@
 				7310E01E18C739E100DB5EF0 /* UIColor+SLFramework.m */,
 				7310E01F18C739E100DB5EF0 /* UIView+SLFramework.h */,
 				7310E02018C739E100DB5EF0 /* UIView+SLFramework.m */,
-				7343DDCB18C396DB00230564 /* Supporting Files */,
 				7310E04918C742B500DB5EF0 /* SLTicker.h */,
 				7310E04A18C742B500DB5EF0 /* SLTicker.m */,
 				737FDE8E18C9A3AB0000BE9B /* SLFunctions.h */,
@@ -145,6 +154,10 @@
 				737FDE9218C9A3DB0000BE9B /* SLLogger.m */,
 				73EBA4B818CBC81B003BE24A /* NSObject+SLFramework.h */,
 				73EBA4B918CBC81B003BE24A /* NSObject+SLFramework.m */,
+				73EBA4CB18CDDCD2003BE24A /* SLModel.h */,
+				73EBA4CC18CDDCD2003BE24A /* SLModel.m */,
+				73716CB318D2D648004409A1 /* SLError.h */,
+				73716CB418D2D648004409A1 /* SLError.m */,
 			);
 			name = SLFramework;
 			path = SLCategories;
@@ -221,18 +234,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EBA4C118CDC676003BE24A /* NSData+SLFramework.m in Sources */,
+				73EBA4CD18CDDCD2003BE24A /* SLModel.m in Sources */,
 				73EBA4C218CDC676003BE24A /* NSNotificationCenter+SLFramework.m in Sources */,
 				73EBA4C318CDC676003BE24A /* NSString+SLFramework.m in Sources */,
 				73EBA4C418CDC676003BE24A /* UIColor+SLFramework.m in Sources */,
+				73EBA4CF18CDEF34003BE24A /* SLModelTests.m in Sources */,
 				73EBA4C518CDC676003BE24A /* UIView+SLFramework.m in Sources */,
 				73EBA4C718CDD9BF003BE24A /* SLLoggerTests.m in Sources */,
+				73716CB218D1DA3B004409A1 /* SLFunctionsTests.m in Sources */,
 				737FDE9018C9A3AB0000BE9B /* SLFunctions.m in Sources */,
 				7310E04118C7406000DB5EF0 /* SLFramework+UIColorTests.m in Sources */,
 				7310E04B18C742B500DB5EF0 /* SLTicker.m in Sources */,
 				7310E04318C740C900DB5EF0 /* SLFramework+NSStringTests.m in Sources */,
+				73716CB518D2D648004409A1 /* SLError.m in Sources */,
 				737FDE9318C9A3DB0000BE9B /* SLLogger.m in Sources */,
 				73EBA4BA18CBC81B003BE24A /* NSObject+SLFramework.m in Sources */,
-				73EBA4C018CDB566003BE24A /* SLFramework+NSObjectTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
