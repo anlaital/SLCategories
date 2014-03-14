@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SLFramework/SLFramework.xcodeproj">
+      location = "group:Tests/SLFrameworkTests.xcodeproj">
    </FileRef>
 </Workspace>
