@@ -18,7 +18,6 @@
 		73716CB518D2D648004409A1 /* SLError.m in Sources */ = {isa = PBXBuildFile; fileRef = 73716CB418D2D648004409A1 /* SLError.m */; };
 		737FDE9018C9A3AB0000BE9B /* SLFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 737FDE8F18C9A3AB0000BE9B /* SLFunctions.m */; };
 		737FDE9318C9A3DB0000BE9B /* SLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 737FDE9218C9A3DB0000BE9B /* SLLogger.m */; };
-		73EBA4BA18CBC81B003BE24A /* NSObject+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EBA4B918CBC81B003BE24A /* NSObject+SLFramework.m */; };
 		73EBA4C118CDC676003BE24A /* NSData+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01818C739E100DB5EF0 /* NSData+SLFramework.m */; };
 		73EBA4C218CDC676003BE24A /* NSNotificationCenter+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01A18C739E100DB5EF0 /* NSNotificationCenter+SLFramework.m */; };
 		73EBA4C318CDC676003BE24A /* NSString+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7310E01C18C739E100DB5EF0 /* NSString+SLFramework.m */; };
@@ -59,8 +58,6 @@
 		737FDE8F18C9A3AB0000BE9B /* SLFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLFunctions.m; path = SLFramework/SLFunctions.m; sourceTree = SOURCE_ROOT; };
 		737FDE9118C9A3DB0000BE9B /* SLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLLogger.h; path = SLFramework/SLLogger.h; sourceTree = SOURCE_ROOT; };
 		737FDE9218C9A3DB0000BE9B /* SLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLLogger.m; path = SLFramework/SLLogger.m; sourceTree = SOURCE_ROOT; };
-		73EBA4B818CBC81B003BE24A /* NSObject+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SLFramework.h"; path = "SLFramework/NSObject+SLFramework.h"; sourceTree = SOURCE_ROOT; };
-		73EBA4B918CBC81B003BE24A /* NSObject+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SLFramework.m"; path = "SLFramework/NSObject+SLFramework.m"; sourceTree = SOURCE_ROOT; };
 		73EBA4C618CDD9BF003BE24A /* SLLoggerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLLoggerTests.m; sourceTree = "<group>"; };
 		73EBA4CB18CDDCD2003BE24A /* SLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLModel.h; path = SLFramework/SLModel.h; sourceTree = SOURCE_ROOT; };
 		73EBA4CC18CDDCD2003BE24A /* SLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLModel.m; path = SLFramework/SLModel.m; sourceTree = SOURCE_ROOT; };
@@ -152,8 +149,6 @@
 				737FDE8F18C9A3AB0000BE9B /* SLFunctions.m */,
 				737FDE9118C9A3DB0000BE9B /* SLLogger.h */,
 				737FDE9218C9A3DB0000BE9B /* SLLogger.m */,
-				73EBA4B818CBC81B003BE24A /* NSObject+SLFramework.h */,
-				73EBA4B918CBC81B003BE24A /* NSObject+SLFramework.m */,
 				73EBA4CB18CDDCD2003BE24A /* SLModel.h */,
 				73EBA4CC18CDDCD2003BE24A /* SLModel.m */,
 				73716CB318D2D648004409A1 /* SLError.h */,
@@ -248,7 +243,6 @@
 				7310E04318C740C900DB5EF0 /* SLFramework+NSStringTests.m in Sources */,
 				73716CB518D2D648004409A1 /* SLError.m in Sources */,
 				737FDE9318C9A3DB0000BE9B /* SLLogger.m in Sources */,
-				73EBA4BA18CBC81B003BE24A /* NSObject+SLFramework.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
