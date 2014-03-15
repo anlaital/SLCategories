@@ -15,8 +15,7 @@
 		73716CDE18D342BC004409A1 /* SLFunctionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73716CD918D342BC004409A1 /* SLFunctionsTests.m */; };
 		73716CDF18D342BC004409A1 /* SLLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73716CDA18D342BC004409A1 /* SLLoggerTests.m */; };
 		73716CE018D342BC004409A1 /* SLModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73716CDB18D342BC004409A1 /* SLModelTests.m */; };
-		73D19E9718D3455400789C9E /* NSData+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D19E8318D3455400789C9E /* NSData+SLFramework.m */; };
-		73D19E9818D3455400789C9E /* NSNotificationCenter+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D19E8518D3455400789C9E /* NSNotificationCenter+SLFramework.m */; };
+		73934CDE18D42BFF00D58E5C /* NSObject+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 73934CDD18D42BFF00D58E5C /* NSObject+SLFramework.m */; };
 		73D19E9918D3455400789C9E /* NSString+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D19E8718D3455400789C9E /* NSString+SLFramework.m */; };
 		73D19E9A18D3455400789C9E /* SLError.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D19E8918D3455400789C9E /* SLError.m */; };
 		73D19E9B18D3455400789C9E /* SLFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D19E8C18D3455400789C9E /* SLFunctions.m */; };
@@ -39,10 +38,8 @@
 		73716CD918D342BC004409A1 /* SLFunctionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLFunctionsTests.m; path = SLFrameworkTests/SLFunctionsTests.m; sourceTree = SOURCE_ROOT; };
 		73716CDA18D342BC004409A1 /* SLLoggerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLLoggerTests.m; path = SLFrameworkTests/SLLoggerTests.m; sourceTree = SOURCE_ROOT; };
 		73716CDB18D342BC004409A1 /* SLModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLModelTests.m; path = SLFrameworkTests/SLModelTests.m; sourceTree = SOURCE_ROOT; };
-		73D19E8218D3455400789C9E /* NSData+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+SLFramework.h"; path = "../SLFramework/NSData+SLFramework.h"; sourceTree = "<group>"; };
-		73D19E8318D3455400789C9E /* NSData+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+SLFramework.m"; path = "../SLFramework/NSData+SLFramework.m"; sourceTree = "<group>"; };
-		73D19E8418D3455400789C9E /* NSNotificationCenter+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+SLFramework.h"; path = "../SLFramework/NSNotificationCenter+SLFramework.h"; sourceTree = "<group>"; };
-		73D19E8518D3455400789C9E /* NSNotificationCenter+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+SLFramework.m"; path = "../SLFramework/NSNotificationCenter+SLFramework.m"; sourceTree = "<group>"; };
+		73934CDC18D42BFF00D58E5C /* NSObject+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SLFramework.h"; path = "../SLFramework/NSObject+SLFramework.h"; sourceTree = "<group>"; };
+		73934CDD18D42BFF00D58E5C /* NSObject+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SLFramework.m"; path = "../SLFramework/NSObject+SLFramework.m"; sourceTree = "<group>"; };
 		73D19E8618D3455400789C9E /* NSString+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SLFramework.h"; path = "../SLFramework/NSString+SLFramework.h"; sourceTree = "<group>"; };
 		73D19E8718D3455400789C9E /* NSString+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SLFramework.m"; path = "../SLFramework/NSString+SLFramework.m"; sourceTree = "<group>"; };
 		73D19E8818D3455400789C9E /* SLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLError.h; path = ../SLFramework/SLError.h; sourceTree = "<group>"; };
@@ -100,10 +97,8 @@
 		7343DDB818C396DB00230564 = {
 			isa = PBXGroup;
 			children = (
-				73D19E8218D3455400789C9E /* NSData+SLFramework.h */,
-				73D19E8318D3455400789C9E /* NSData+SLFramework.m */,
-				73D19E8418D3455400789C9E /* NSNotificationCenter+SLFramework.h */,
-				73D19E8518D3455400789C9E /* NSNotificationCenter+SLFramework.m */,
+				73934CDC18D42BFF00D58E5C /* NSObject+SLFramework.h */,
+				73934CDD18D42BFF00D58E5C /* NSObject+SLFramework.m */,
 				73D19E8618D3455400789C9E /* NSString+SLFramework.h */,
 				73D19E8718D3455400789C9E /* NSString+SLFramework.m */,
 				73D19E8818D3455400789C9E /* SLError.h */,
@@ -208,13 +203,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				73D19E9D18D3455400789C9E /* SLModel.m in Sources */,
+				73934CDE18D42BFF00D58E5C /* NSObject+SLFramework.m in Sources */,
 				73D19E9E18D3455400789C9E /* SLTicker.m in Sources */,
 				73716CDD18D342BC004409A1 /* SLFramework+UIColorTests.m in Sources */,
 				73D19E9918D3455400789C9E /* NSString+SLFramework.m in Sources */,
 				73716CDF18D342BC004409A1 /* SLLoggerTests.m in Sources */,
 				73D19E9F18D3455400789C9E /* UIColor+SLFramework.m in Sources */,
-				73D19E9718D3455400789C9E /* NSData+SLFramework.m in Sources */,
-				73D19E9818D3455400789C9E /* NSNotificationCenter+SLFramework.m in Sources */,
 				73716CE018D342BC004409A1 /* SLModelTests.m in Sources */,
 				73D19E9A18D3455400789C9E /* SLError.m in Sources */,
 				73716CDC18D342BC004409A1 /* SLFramework+NSStringTests.m in Sources */,
@@ -238,10 +232,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "../SLFramework/SLFramework-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "SLFrameworkTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
