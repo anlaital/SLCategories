@@ -23,7 +23,6 @@
 #import <UIKit/UIApplication.h>
 
 #import "SLTicker.h"
-#import "NSNotificationCenter+SLFramework.h"
 #import "SLFunctions.h"
 
 @implementation SLTicker
@@ -46,7 +45,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] safelyRemoveObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 
     self.ticking = NO;
 }
