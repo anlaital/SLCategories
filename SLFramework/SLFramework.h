@@ -1,4 +1,4 @@
-// NSObject+SLFramework.m
+// SLFramework.h
 //
 // Copyright (c) 2014 Antti Laitala (https://github.com/anlaital)
 //
@@ -20,28 +20,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import <Foundation/Foundation.h>
+
+#ifndef __SLFRAMEWORK_H__
+#define __SLFRAMEWORK_H__
+
+#import "SLLogger.h"
+#import "SLError.h"
+#import "SLFunctions.h"
+#import "SLModel.h"
+#import "SLTicker.h"
+
 #import "NSObject+SLFramework.h"
+#import "NSString+SLFramework.h"
+#import "UIColor+SLFramework.h"
+#import "UIView+SLFramework.h"
 
-@implementation NSObject (SLFramework)
-
-- (BOOL)safelyRemoveObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath
-{
-    @try {
-        [self removeObserver:observer forKeyPath:keyPath];
-    } @catch (NSException *exception) {
-        return NO;
-    }
-    return YES;
-}
-
-- (BOOL)safelyRemoveObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context
-{
-    @try {
-        [self removeObserver:observer forKeyPath:keyPath context:context];
-    } @catch (NSException *exception) {
-        return NO;
-    }
-    return YES;
-}
-
-@end
+#endif

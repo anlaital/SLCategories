@@ -40,6 +40,7 @@
 		73716CDB18D342BC004409A1 /* SLModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLModelTests.m; path = SLFrameworkTests/SLModelTests.m; sourceTree = SOURCE_ROOT; };
 		73934CDC18D42BFF00D58E5C /* NSObject+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SLFramework.h"; path = "../SLFramework/NSObject+SLFramework.h"; sourceTree = "<group>"; };
 		73934CDD18D42BFF00D58E5C /* NSObject+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SLFramework.m"; path = "../SLFramework/NSObject+SLFramework.m"; sourceTree = "<group>"; };
+		73934CDF18D5D49A00D58E5C /* SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLFramework.h; path = ../SLFramework/SLFramework.h; sourceTree = "<group>"; };
 		73D19E8618D3455400789C9E /* NSString+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SLFramework.h"; path = "../SLFramework/NSString+SLFramework.h"; sourceTree = "<group>"; };
 		73D19E8718D3455400789C9E /* NSString+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SLFramework.m"; path = "../SLFramework/NSString+SLFramework.m"; sourceTree = "<group>"; };
 		73D19E8818D3455400789C9E /* SLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLError.h; path = ../SLFramework/SLError.h; sourceTree = "<group>"; };
@@ -97,6 +98,7 @@
 		7343DDB818C396DB00230564 = {
 			isa = PBXGroup;
 			children = (
+				73934CDF18D5D49A00D58E5C /* SLFramework.h */,
 				73934CDC18D42BFF00D58E5C /* NSObject+SLFramework.h */,
 				73934CDD18D42BFF00D58E5C /* NSObject+SLFramework.m */,
 				73D19E8618D3455400789C9E /* NSString+SLFramework.h */,
