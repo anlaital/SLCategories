@@ -24,6 +24,10 @@
 
 /** Hash functions available for the `digest:` methods of `NSString+SLFramework`. */
 typedef NS_ENUM(NSInteger, SLHashFunction) {
+    SLHashFunctionMD2,
+    SLHashFunctionMD4,
+    SLHashFunctionMD5,
+    SLHashFunctionSHA1,
     SLHashFunctionSHA224,
     SLHashFunctionSHA256,
     SLHashFunctionSHA384,

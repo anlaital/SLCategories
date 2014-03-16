@@ -54,6 +54,22 @@
     size_t digestLength = 0;
     unsigned char *(*hashFunctionPtr)(const void *data, CC_LONG len, unsigned char *md);
     switch (hashFunction) {
+        case SLHashFunctionMD2:
+            digestLength = CC_MD2_DIGEST_LENGTH;
+            hashFunctionPtr = CC_MD2;
+            break;
+        case SLHashFunctionMD4:
+            digestLength = CC_MD4_DIGEST_LENGTH;
+            hashFunctionPtr = CC_MD4;
+            break;
+        case SLHashFunctionMD5:
+            digestLength = CC_MD5_DIGEST_LENGTH;
+            hashFunctionPtr = CC_MD5;
+            break;
+        case SLHashFunctionSHA1:
+            digestLength = CC_SHA1_DIGEST_LENGTH;
+            hashFunctionPtr = CC_SHA1;
+            break;
         case SLHashFunctionSHA224:
             digestLength = CC_SHA224_DIGEST_LENGTH;
             hashFunctionPtr = CC_SHA224;

@@ -60,7 +60,19 @@
     
     digest = @"a".digest;
     XCTAssert([digest isEqualToString:@"ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"]);
-    
+
+    digest = [@"阪, 熊, 奈, 岡, 鹿, 梨, 阜, 埼, 茨, 栃 and 媛." digestUsingHashFunction:SLHashFunctionMD2];
+    XCTAssert([digest isEqualToString:@"20071a14f4fe88db5a5c6f81719dfaff"]);
+
+    digest = [@"阪, 熊, 奈, 岡, 鹿, 梨, 阜, 埼, 茨, 栃 and 媛." digestUsingHashFunction:SLHashFunctionMD4];
+    XCTAssert([digest isEqualToString:@"1f90003f7b11de472575fe7a4e70c78d"]);
+
+    digest = [@"阪, 熊, 奈, 岡, 鹿, 梨, 阜, 埼, 茨, 栃 and 媛." digestUsingHashFunction:SLHashFunctionMD5];
+    XCTAssert([digest isEqualToString:@"97de506cc980d7b2a5396143363b63fb"]);
+
+    digest = [@"阪, 熊, 奈, 岡, 鹿, 梨, 阜, 埼, 茨, 栃 and 媛." digestUsingHashFunction:SLHashFunctionSHA1];
+    XCTAssert([digest isEqualToString:@"8ee21357bee09e21412f0f048827a985d5faa89b"]);
+
     digest = [@"阪, 熊, 奈, 岡, 鹿, 梨, 阜, 埼, 茨, 栃 and 媛." digestUsingHashFunction:SLHashFunctionSHA224];
     XCTAssert([digest isEqualToString:@"50f36eb3f66469d51b8bde4ad54a49cd3ccd7249513ed601f42b2f4f"]);
     
