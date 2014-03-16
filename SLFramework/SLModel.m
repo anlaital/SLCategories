@@ -188,7 +188,7 @@
                 __invokeSelector(setter, double, number.doubleValue);
             } else {
                 *error = [SLError errorWithUserInfo:@{
-                    SLErrorReason: [NSString stringWithFormat:@"Missing implementation for primitive data type `%d`", property.primitiveDataType],
+                    SLErrorReason: [NSString stringWithFormat:@"Missing implementation for primitive data type `%ld`", (long)property.primitiveDataType],
                     SLErrorObject: self
                 }];
                 return;

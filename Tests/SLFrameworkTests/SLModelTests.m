@@ -22,6 +22,8 @@
 
 #import <XCTest/XCTest.h>
 
+#import "SLFramework.h"
+
 #pragma mark - SLModelWithNativeDataTypes
 
 @interface SLModelWithNativeDataTypes : SLModel
