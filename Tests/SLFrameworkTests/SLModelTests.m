@@ -24,6 +24,8 @@
 
 #import "SLModel.h"
 
+#pragma mark - SLModelWithNativeDataTypes
+
 @interface SLModelWithNativeDataTypes : SLModel
 
 @property (nonatomic) char test_char;
@@ -46,6 +48,19 @@
 @end
 @implementation SLModelWithNativeDataTypes @end
 
+@interface SLModelWithNonNativeDataTypes : SLModel
+
+@property (nonatomic, readonly) NSNumber *number;
+@property (nonatomic, readonly) NSString *string;
+@property (nonatomic, readonly) NSMutableString *mutableString;
+@property (nonatomic, readonly) NSArray *array;
+@property (nonatomic, readonly) NSMutableArray *mutableArray;
+@property (nonatomic, readonly) NSDictionary *dictionary;
+@property (nonatomic, readonly) NSMutableDictionary *mutableDictionary;
+
+@end
+@implementation SLModelWithNonNativeDataTypes @end
+
 @interface SLModelWithRequiredProperty : SLModel
 
 @property (nonatomic, readonly) NSNumber<SLModelRequired> *testNumber;
@@ -56,6 +71,27 @@
 @interface SLModelTests : XCTestCase
 
 @end
+
+@interface SLModelWithInheritanceA : SLModel
+
+@property (nonatomic, readonly) NSString<SLModelRequired> *baseString;
+
+@end
+@implementation SLModelWithInheritanceA @end
+
+@interface SLModelWithInheritanceB : SLModelWithInheritanceA
+
+@property (nonatomic, readonly) NSString *string;
+
+@end
+@implementation SLModelWithInheritanceB @end
+
+@interface SLModelWithAnotherModelInside : SLModel
+
+@property (nonatomic, readonly) SLModelWithInheritanceB *inherited;
+
+@end
+@implementation SLModelWithAnotherModelInside @end
 
 @implementation SLModelTests
 
@@ -104,10 +140,56 @@
     XCTAssert(object.test_NSUInteger == [dictionary[@"test_NSUInteger"] unsignedIntegerValue]);
 }
 
+- (void)testNonNatives
+{
+    NSDictionary *dictionary = @{
+        @"number": @(100),
+        @"string": @"foo",
+        @"mutableString": @"bar",
+        @"array": @[@"foo", @"bar"],
+        @"mutableArray": @[@"foo", @"bar"],
+        @"dictionary": @{ @"foo": @"bar" },
+        @"mutableDictionary": @{ @"foo": @"bar" }
+    };
+    SLModelWithNonNativeDataTypes *object = [[SLModelWithNonNativeDataTypes alloc] initWithDictionary:dictionary];
+    XCTAssert([object.number isKindOfClass:[NSNumber class]]);
+    XCTAssert([object.number isEqualToNumber:dictionary[@"number"]]);
+    XCTAssert([object.string isKindOfClass:[NSString class]]);
+    XCTAssert([object.string isEqualToString:dictionary[@"string"]]);
+    XCTAssert([object.mutableString isKindOfClass:[NSMutableString class]]);
+    XCTAssert([object.mutableString isEqualToString:dictionary[@"mutableString"]]);
+    [object.mutableString appendString:@"baz"];
+    XCTAssert([object.array isKindOfClass:[NSArray class]]);
+    XCTAssert([object.array isEqualToArray:dictionary[@"array"]]);
+    XCTAssert([object.mutableArray isKindOfClass:[NSMutableArray class]]);
+    XCTAssert([object.mutableArray isEqualToArray:dictionary[@"mutableArray"]]);
+    [object.mutableArray addObject:@"baz"];
+    XCTAssert([object.dictionary isKindOfClass:[NSDictionary class]]);
+    XCTAssert([object.dictionary isEqualToDictionary:dictionary[@"dictionary"]]);
+    XCTAssert([object.mutableDictionary isKindOfClass:[NSMutableDictionary class]]);
+    XCTAssert([object.mutableDictionary isEqualToDictionary:dictionary[@"mutableDictionary"]]);
+    object.mutableDictionary[@"mutable"] = @"baz";
+}
+
 - (void)testRequiredProperty
 {
-    SLModelWithRequiredProperty *obj = [[SLModelWithRequiredProperty alloc] initWithDictionary:@{ @"foo": @"baz" }];
-    XCTAssert(!obj);
+    SLModelWithRequiredProperty *missingRequired = [[SLModelWithRequiredProperty alloc] initWithDictionary:@{ @"foo": @"baz" }];
+    XCTAssert(!missingRequired);
+    
+    NSDictionary *dict = @{ @"string": @"bar" };
+    SLModelWithInheritanceB *missingRequiredInSuperClass = [[SLModelWithInheritanceB alloc] initWithDictionary:dict];
+    XCTAssert(!missingRequiredInSuperClass);
+
+    SLModelWithRequiredProperty *requiredIsNull = [[SLModelWithRequiredProperty alloc] initWithDictionary:@{ @"testNumber": [NSNull null] }];
+    XCTAssert(!requiredIsNull);
+}
+
+- (void)testInheritance
+{
+    NSDictionary *dict = @{ @"baseString": @"foo", @"string": @"bar" };
+    SLModelWithInheritanceB *object = [[SLModelWithInheritanceB alloc] initWithDictionary:dict];
+    XCTAssert([object.baseString isEqualToString:dict[@"baseString"]]);
+    XCTAssert([object.string isEqualToString:dict[@"string"]]);
 }
 
 @end

@@ -59,6 +59,13 @@
         }
         
         id value = dictionary[property.name];
+
+        // Determine if the value is an NSNull.
+        if (value == [NSNull null]) {
+            // NSNulls are implicitly converted to nils as they provide no benefits and are a likely source of uncaught exceptions when handling data coming remote backends.
+            value = nil;
+        }
+
         if (!value) {
             if ([property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLModelRequired))]) {
                 // Required property was not found from the dictionary.
@@ -71,9 +78,10 @@
             continue;
         }
         
-        if (value == NSNull.null) {
-            // Ignore null values.
-            continue;
+        // Determine if the property is mutable.
+        if ([property.classDataType conformsToProtocol:@protocol(NSMutableCopying)]) {
+            // If the data type is a class and it implements the NSMutableCopying protocol, then make a mutable copy of it.
+            value = [value mutableCopy];
         }
         
         SEL setter = property.customSetter ?: NSSelectorFromString([NSString stringWithFormat:@"set%@:", [[property.name substringToIndex:1].uppercaseString stringByAppendingString:[property.name substringFromIndex:1]]]);
