@@ -79,6 +79,7 @@
 @end
 @implementation SLModelWithInheritanceA @end
 
+@protocol SLModelWithInheritanceB @end
 @interface SLModelWithInheritanceB : SLModelWithInheritanceA
 
 @property (nonatomic, readonly) NSString *string;
@@ -89,9 +90,17 @@
 @interface SLModelWithAnotherModelInside : SLModel
 
 @property (nonatomic, readonly) SLModelWithInheritanceB *inherited;
+@property (nonatomic, readonly) NSArray<SLModelWithInheritanceB> *array;
 
 @end
 @implementation SLModelWithAnotherModelInside @end
+
+@interface SLModelWithIgnoredProperty : SLModel
+
+@property (nonatomic, readonly) NSNumber<SLModelIgnored> *ignored;
+
+@end
+@implementation SLModelWithIgnoredProperty @end
 
 @implementation SLModelTests
 
@@ -190,6 +199,28 @@
     SLModelWithInheritanceB *object = [[SLModelWithInheritanceB alloc] initWithDictionary:dict];
     XCTAssert([object.baseString isEqualToString:dict[@"baseString"]]);
     XCTAssert([object.string isEqualToString:dict[@"string"]]);
+}
+
+- (void)testIgnoredProperty
+{
+    NSDictionary *dictionary = @{ @"ignored": @(50) };
+    SLModelWithIgnoredProperty *object = [[SLModelWithIgnoredProperty alloc] initWithDictionary:dictionary];
+    XCTAssert(!object.ignored);
+}
+
+- (void)testAnotherModelInside
+{
+    NSDictionary *dictionary = @{
+        @"inherited": @{ @"baseString": @"foo" },
+        @"array": @[ @{ @"baseString": @"bar" }, @{ @"baseString": @"baz" } ]
+    };
+    SLModelWithAnotherModelInside *object = [[SLModelWithAnotherModelInside alloc] initWithDictionary:dictionary];
+    XCTAssert([object.inherited.baseString isEqualToString:@"foo"]);
+    XCTAssert(object.array.count == 2);
+    SLModelWithInheritanceB *first = object.array[0];
+    SLModelWithInheritanceB *second = object.array[1];
+    XCTAssert([first.baseString isEqualToString:@"bar"]);
+    XCTAssert([second.baseString isEqualToString:@"baz"]);
 }
 
 @end

@@ -40,7 +40,7 @@
         NSError *error = nil;
         [self __parsePropertiesFromDictionary:dictionary error:&error];
         if (error) {
-            SLLog(@"Failed to initialize SLModel from dictionary `%@` with error `%@`", dictionary, error);
+            SLLog(@"Failed to initialize model `%@` from dictionary `%@` with error `%@`", self.class, dictionary, error);
             return nil;
         }
     }
@@ -65,14 +65,54 @@
             // NSNulls are implicitly converted to nils as they provide no benefits and are a likely source of uncaught exceptions when handling data coming remote backends.
             value = nil;
         }
+        
+        BOOL isRequiredProperty = [property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLModelRequired))];
 
+        // Determine if the property needs to be instantiated from another model.
+        if ([property.classDataType isSubclassOfClass:[SLModel class]]) {
+            // Property is directly another model.
+            if (![value isKindOfClass:[NSDictionary class]]) {
+                // SLModels can only be instantiated from dictionaries.
+                *error = [SLError errorWithUserInfo:@{ SLErrorReason: [NSString stringWithFormat:@"Property named `%@` is a model but value `%@` is not a dictionary", property.name, value], SLErrorObject: self }];
+                return;
+            }
+            value = [[property.classDataType alloc] initWithDictionary:value];
+        } else if ([property.classDataType isSubclassOfClass:[NSArray class]]) {
+            // Determine if the array conforms to a protocol that has a model with the same name.
+            Class modelClass = nil;
+            for (NSString *protocolName in property.protocolNames) {
+                modelClass = NSClassFromString(protocolName);
+                if (modelClass)
+                    break;
+            }
+            if (modelClass) {
+                // Instantiate models from the array data.
+                if (![value isKindOfClass:[NSArray class]]) {
+                    // SLModel arrays can only be instantiated from arrays.
+                    *error = [SLError errorWithUserInfo:@{ SLErrorReason: [NSString stringWithFormat:@"Property named `%@` is an array of models but value `%@` is not an array", property.name, value], SLErrorObject: self }];
+                    return;
+                }
+                
+                NSMutableArray *models = [NSMutableArray new];
+                for (id dict in value) {
+                    if (![dict isKindOfClass:[NSDictionary class]]) {
+                        // SLModels can only be instantiated from dictionaries.
+                        *error = [SLError errorWithUserInfo:@{ SLErrorReason: [NSString stringWithFormat:@"Property named `%@` is an array of models but value `%@` is not a dictionary", property.name, value], SLErrorObject: self }];
+                        return;
+                    }
+                    id model = [[modelClass alloc] initWithDictionary:dict];
+                    if (model)
+                        [models addObject:model];
+                }
+                value = models;
+            }
+        }
+        
+        // Perform property nil value checks.
         if (!value) {
-            if ([property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLModelRequired))]) {
+            if (isRequiredProperty) {
                 // Required property was not found from the dictionary.
-                *error = [SLError errorWithUserInfo:@{
-                    SLErrorReason: [NSString stringWithFormat:@"Required property named `%@` not found in dictionary", property.name],
-                    SLErrorObject: self
-                }];
+                *error = [SLError errorWithUserInfo:@{ SLErrorReason: [NSString stringWithFormat:@"Required property named `%@` not found in dictionary", property.name], SLErrorObject: self }];
                 return;
             }
             continue;
