@@ -22,6 +22,44 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Protocol for marking `SLModel` properties as being required.
+ */
+@protocol SLModelRequired <NSObject>
+
+@end
+
+/**
+ Protocol for marking `SLModel` properties as being ignored.
+ */
+@protocol SLModelIgnored <NSObject>
+
+@end
+
+/**
+ Protocol for marking an `NSDate` property being in ISO 8601 format.
+ */
+@protocol SLDateISO8601 <NSObject>
+
+@end
+
+/**
+ Protocol for marking an `NSDate` property being represented by the number of seconds from the first instant of 1 January 1970, GMT.
+ */
+@protocol SLDateSecondsSinceEpoch <NSObject>
+
+@end
+
+/**
+ Protocol for marking an `NSDate` property being represented by the number of milliseconds from the first instant of 1 January 1970, GMT.
+ */
+@protocol SLDateMillisecondsSinceEpoch <NSObject>
+
+@end
+
+/**
+ Protocol that all models implement.
+ */
 @protocol SLModel <NSObject>
 
 /**
@@ -41,24 +79,38 @@
 @end
 
 /**
- Protocol for marking `SLModel` properties as being required.
- */
-@protocol SLModelRequired <NSObject>
-
-@end
-
-/**
- Protocol for marking `SLModel` properties as being ignored.
- */
-@protocol SLModelIgnored <NSObject>
-
-@end
-
-/**
  Defines an interface for models.
+ 
+ Provides facilities for constructing models from dictionary and serializing them back to dictionaries.
+
+ The following property data types are supported:
+ 
+ - `char`
+ - `unsigned char`
+ - `short`
+ - `unsigned short`
+ - `int`
+ - `unsigned int`
+ - `long`
+ - `unsigned long`
+ - `long long`
+ - `unsigned long long`
+ - `float`
+ - `double`
+ - `NSNumber *`
+ - `NSString *`
+ - `NSDate *`
+ - `NSArray *`
+ - `NSMutableArray *`
+ - `NSDictionary *`
+ - `NSMutableDictionary *`
+ - `id`
  
  @related `SLModelRequired`
  @related `SLModelIgnored`
+ @related `SLDateISO8601`
+ @related `SLDateSecondsSinceEpoch`
+ @related `SLDateMillisecondsSinceEpoch`
  */
 @interface SLModel : NSObject <SLModel>
 
@@ -72,6 +124,11 @@
 @end
 
 /**
- This is just to make all objects conform to the protocols supported by the model to prevent compiler warnings.
+ Make `NSObject` objects conform to the defined object protocols.
  */
 @interface NSObject (SLModel) <SLModelRequired, SLModelIgnored> @end
+
+/**
+ Make `NSDate` objects conform to the defined date protocols.
+ */
+@interface NSDate (SLModel) <SLDateISO8601, SLDateSecondsSinceEpoch, SLDateMillisecondsSinceEpoch> @end

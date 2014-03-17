@@ -22,6 +22,8 @@
 
 #import <objc/runtime.h>
 
+#import <ISO8601DateFormatter.h>
+
 #import "SLModel.h"
 #import "SLModelPropertyNameTransform.h"
 #import "SLFunctions.h"
@@ -83,6 +85,17 @@ static NSString *const SLModelPropertyNameMappingDictionaryKey = @"SLModelProper
             }
         } else if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSDictionary class]] || [value isKindOfClass:[NSURL class]]) {
             // These value types can be passed as-is.
+        } else if ([value isKindOfClass:[NSDate class]]) {
+            if ([property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLDateISO8601))]) {
+                value = [[self __ISO8601DateFormatter] stringFromDate:value timeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+            } else if ([property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLDateSecondsSinceEpoch))]) {
+                value = @((long long)[value timeIntervalSince1970]);
+            } else if ([property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLDateMillisecondsSinceEpoch))]) {
+                value = @((long long)[value timeIntervalSince1970] * 1000);
+            } else {
+                SLLog(@"Failed to serialize property named `%@` because it is a date but its protocols `%@` do not contain a supported date presentation", property.name, property.protocolNames);
+                continue;
+            }
         } else if (value) {
             SLLog(@"Failed to serialize property named `%@` because its class `%@` is not supported", property.name, [value class]);
             continue;
@@ -105,7 +118,7 @@ static NSString *const SLModelPropertyNameMappingDictionaryKey = @"SLModelProper
 
 #pragma mark - Private
 
-- (void)__parsePropertiesFromDictionary:(NSDictionary *)dictionary error:(NSError **)error
+- (void)__parsePropertiesFromDictionary:(NSDictionary *)dictionary error:(SLError **)error
 {
     NSArray *properties = [self __properties];
     NSDictionary *propertyNameMapping = [self __propertyNameMappingForProperties:properties];
@@ -161,6 +174,10 @@ static NSString *const SLModelPropertyNameMappingDictionaryKey = @"SLModelProper
                 }
                 value = models;
             }
+        } else if ([property.classDataType isSubclassOfClass:[NSDate class]]) {
+            value = [self __dateForProperty:property fromValue:value error:error];
+            if (*error)
+                return;
         }
         
         // Perform property nil value checks.
@@ -297,6 +314,46 @@ static NSString *const SLModelPropertyNameMappingDictionaryKey = @"SLModelProper
             return modelClass;
     }
     return nil;
+}
+
+- (ISO8601DateFormatter *)__ISO8601DateFormatter
+{
+    static ISO8601DateFormatter *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [ISO8601DateFormatter new];
+        instance.includeTime = YES;
+    });
+    return instance;
+}
+
+- (NSDate *)__dateForProperty:(SLObjectProperty *)property fromValue:(id)value error:(SLError **)error
+{
+    NSDate *date = nil;
+    
+    // Convert the value to a string presentation if needed.
+    NSString *dateString = nil;
+    if ([value isKindOfClass:[NSString class]]) {
+        dateString = value;
+    } else if ([value isKindOfClass:[NSNumber class]]) {
+        dateString = [NSString stringWithFormat:@"%lld", [value longLongValue]];
+    } else {
+        *error = [SLError errorWithUserInfo:@{ SLErrorReason: [NSString stringWithFormat:@"Property named `%@` is a date but its value `%@` is not a string or a number", property.name, value], SLErrorObject: self }];
+        return nil;
+    }
+    
+    // Parse date from property.
+    if ([property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLDateISO8601))]) {
+        date = [[self __ISO8601DateFormatter] dateFromString:value];
+    } else if ([property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLDateSecondsSinceEpoch))]) {
+        date = [NSDate dateWithTimeIntervalSince1970:dateString.longLongValue];
+    } else if ([property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLDateMillisecondsSinceEpoch))]) {
+        date = [NSDate dateWithTimeIntervalSince1970:dateString.longLongValue / 1000];
+    } else {
+        *error = [SLError errorWithUserInfo:@{ SLErrorReason: [NSString stringWithFormat:@"Property named `%@` is a date but its protocols `%@` do not contain a supported date presentation", property.name, property.protocolNames], SLErrorObject: self }];
+        return nil;
+    }
+    return date;
 }
 
 @end

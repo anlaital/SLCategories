@@ -23,6 +23,8 @@
 #import <XCTest/XCTest.h>
 #import <objc/runtime.h>
 
+#import <ISO8601DateFormatter.h>
+
 #import "SLFramework.h"
 
 #pragma mark - SLModelWithNativeDataTypes
@@ -103,6 +105,19 @@
 
 @end
 @implementation SLModelWithIgnoredProperty @end
+
+@interface SLModelWithDatesTest : SLModel
+
+//@property (nonatomic, readonly) NSDate *implicit8601;
+//@property (nonatomic, readonly) NSDate *implicitSecsSinceEpoch;
+//@property (nonatomic, readonly) NSDate *implicitMillisecsSinceEpoch;
+
+@property (nonatomic, readonly) NSDate<SLDateISO8601> *explicit8601;
+@property (nonatomic, readonly) NSDate<SLDateSecondsSinceEpoch> *explicitSecsSinceEpoch;
+@property (nonatomic, readonly) NSDate<SLDateMillisecondsSinceEpoch> *explicitMillisecsSinceEpoch;
+
+@end
+@implementation SLModelWithDatesTest @end
 
 @implementation SLModelTests
 
@@ -273,6 +288,30 @@
 
     objc_removeAssociatedObjects([SLModelWithAnotherModelInside class]);
     objc_removeAssociatedObjects([SLModelWithNonNativeDataTypes class]);
+}
+
+- (void)testDates
+{
+    NSString *iso8601 = @"2014-03-16T20:57:23Z";
+    NSString *secs = @"1395057510";
+    NSNumber *millisecs = @(secs.doubleValue * 1000);
+    
+    ISO8601DateFormatter *formatter = [ISO8601DateFormatter new];
+    
+    NSDictionary *dictionary = @{ @"implicit8601": iso8601, @"implicitSecsSinceEpoch": secs, @"implicitMillisecsSinceEpoch": millisecs, @"explicit8601": iso8601, @"explicitSecsSinceEpoch": secs, @"explicitMillisecsSinceEpoch": millisecs };
+    
+    SLModelWithDatesTest *object = [[SLModelWithDatesTest alloc] initWithDictionary:dictionary];
+//    XCTAssert([object.implicit8601 isEqualToDate:[formatter dateFromString:iso8601]]);
+//    XCTAssert([object.implicitSecsSinceEpoch timeIntervalSince1970] == secs.longLongValue);
+//    XCTAssert([object.implicitMillisecsSinceEpoch timeIntervalSince1970] * 1000 == millisecs.longLongValue);
+    XCTAssert([object.explicit8601 isEqualToDate:[formatter dateFromString:iso8601]]);
+    XCTAssert([object.explicitSecsSinceEpoch timeIntervalSince1970] == secs.longLongValue);
+    XCTAssert([object.explicitMillisecsSinceEpoch timeIntervalSince1970] * 1000 == millisecs.longLongValue);
+    
+    dictionary = object.dictionaryPresentation;
+    XCTAssert([dictionary[@"explicit8601"] isEqualToString:iso8601]);
+    XCTAssert([dictionary[@"explicitSecsSinceEpoch"] longLongValue] == secs.longLongValue);
+    XCTAssert([dictionary[@"explicitMillisecsSinceEpoch"] longLongValue] == millisecs.longLongValue);
 }
 
 @end

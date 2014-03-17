@@ -1,0 +1,7 @@
+platform :ios, '7.0'
+
+workspace '../SLFramework'
+xcodeproj 'SLFrameworkTests'
+
+pod 'ISO8601DateFormatter'
+
