@@ -41,7 +41,7 @@ uint64_t SLMeasureStartTime##identifier = mach_absolute_time();
 mach_timebase_info_data_t SLMeasureInfo##identifier; \
 mach_timebase_info(&SLMeasureInfo##identifier); \
 CGFloat SLMeasureElapsed##identifier = (CGFloat)((mach_absolute_time() - SLMeasureStartTime##identifier)) * SLMeasureInfo##identifier.numer / SLMeasureInfo##identifier.denom / NSEC_PER_SEC; \
-[[SLLogger sharedInstance] log:@"Measured [%.0f ms] for identifier [%@]" fileName:__FILE__ lineNumber:__LINE__ methodName:__FUNCTION__, SLMeasureElapsed##identifier * 1000, @#identifier]
+[[SLLogger sharedInstance] log:@"Measured %.0f ms for identifier `%@`" fileName:__FILE__ lineNumber:__LINE__ methodName:__FUNCTION__, SLMeasureElapsed##identifier * 1000, @#identifier]
 
 typedef NS_OPTIONS(NSInteger, SLLoggerOptions) {
     SLLoggerOptionFileLoggingEnabled    = 1 << 0,

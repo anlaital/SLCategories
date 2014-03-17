@@ -29,6 +29,7 @@
 #import "SLError.h"
 #import "SLFunctions.h"
 #import "SLModel.h"
+#import "SLModelPropertyNameTransform.h"
 #import "SLTicker.h"
 
 #import "NSObject+SLFramework.h"

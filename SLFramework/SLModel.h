@@ -22,6 +22,24 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol SLModel <NSObject>
+
+/**
+ Initializes the object from the given `dictionary`.
+ 
+ @related `dictionaryForMappingPropertyNames`
+ 
+ @param dictionary The dictionary to use when initializing the object.
+ */
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
+/**
+ Returns the dictionary presentation of the model.
+ */
+- (NSDictionary *)dictionaryPresentation;
+
+@end
+
 /**
  Protocol for marking `SLModel` properties as being required.
  */
@@ -39,16 +57,21 @@
 /**
  Defines an interface for models.
  
- @see `SLModelRequired`
- @see `SLModelIgnored`
+ @related `SLModelRequired`
+ @related `SLModelIgnored`
  */
-@interface SLModel : NSObject
+@interface SLModel : NSObject <SLModel>
 
 /**
- Initializes the object from the given `dictionary`.
+ Provides an optional dictionary for mapping the model's property names to dictionary keys. This dictionary is used by `initWithDictionary:` and may contain only a subset of the model's property names. The model always checks this dictionary for custom mapping first and if no custom mapping is found, then the default name-to-name mapping is used.
  
- @param dictionary The dictionary to use when initializing the object.
+ @return Dictionary for mapping the model's property names to dictionary keys or nil if none.
  */
-- (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSDictionary *)dictionaryForMappingPropertyNames;
 
 @end
+
+/**
+ This is just to make all objects conform to the protocols supported by the model to prevent compiler warnings.
+ */
+@interface NSObject (SLModel) <SLModelRequired, SLModelIgnored> @end

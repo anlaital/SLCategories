@@ -23,6 +23,7 @@
 #import <objc/runtime.h>
 
 #import "SLModel.h"
+#import "SLModelPropertyNameTransform.h"
 #import "SLFunctions.h"
 #import "SLLogger.h"
 #import "SLError.h"
@@ -31,6 +32,9 @@
     IMP __imp = [self methodForSelector:selector]; \
     void *(*__impFunc)(id, SEL, argType) = (void *)__imp; \
     __impFunc(self, selector, arg)
+
+static NSString *const SLModelPropertiesKey = @"SLModelPropertiesKey";
+static NSString *const SLModelPropertyNameMappingDictionaryKey = @"SLModelPropertyNameMappingDictionaryKey";
 
 @implementation SLModel
 
@@ -47,18 +51,74 @@
     return self;
 }
 
-#pragma mark - Private
-
-- (void)__parsePropertiesFromDictionary:(NSDictionary *)dictionary error:(NSError **)error
+- (NSDictionary *)dictionaryPresentation
 {
-    NSArray *properties = [SLFunctions propertiesForClass:self.class recursivelyUpToClass:[SLModel class]];
+    NSMutableDictionary *results = [NSMutableDictionary new];
+
+    NSArray *properties = [self __properties];
+    NSDictionary *propertyNameMapping = [self __propertyNameMappingForProperties:properties];
+
     for (SLObjectProperty *property in properties) {
         if ([property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLModelIgnored))]) {
             // Do not process properties marked to be ignored.
             continue;
         }
         
-        id value = dictionary[property.name];
+        id value = [self valueForKey:property.name];
+        if ([value isKindOfClass:[SLModel class]]) {
+            value = [value dictionaryPresentation];
+        } else if ([value isKindOfClass:[NSArray class]]) {
+            // Determine if the array contains models.
+            Class modelClass = [self __modelClassFromPropertyProtocolNames:property.protocolNames];
+            if (modelClass) {
+                NSMutableArray *array = [NSMutableArray new];
+                if ([value isKindOfClass:[NSArray class]]) {
+                    for (id model in value) {
+                        NSDictionary *dict = [model dictionaryPresentation];
+                        if (dict)
+                            [array addObject:dict];
+                    }
+                }
+                value = array;
+            }
+        } else if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSDictionary class]] || [value isKindOfClass:[NSURL class]]) {
+            // These value types can be passed as-is.
+        } else if (value) {
+            SLLog(@"Failed to serialize property named `%@` because its class `%@` is not supported", property.name, [value class]);
+            continue;
+        } else {
+            // Suppress nil values.
+            continue;
+        }
+        
+        NSString *propertyName = [propertyNameMapping valueForKey:property.name] ?: property.name;
+        results[propertyName] = value;
+    }
+
+    return results;
+}
+
+- (NSDictionary *)dictionaryForMappingPropertyNames
+{
+    return nil;
+}
+
+#pragma mark - Private
+
+- (void)__parsePropertiesFromDictionary:(NSDictionary *)dictionary error:(NSError **)error
+{
+    NSArray *properties = [self __properties];
+    NSDictionary *propertyNameMapping = [self __propertyNameMappingForProperties:properties];
+    
+    for (SLObjectProperty *property in properties) {
+        if ([property.protocolNames containsObject:NSStringFromProtocol(@protocol(SLModelIgnored))]) {
+            // Do not process properties marked to be ignored.
+            continue;
+        }
+        
+        // Get the value determined by the transformed property name.
+        NSString *propertyName = propertyNameMapping[property.name] ?: property.name;
+        id value = dictionary[propertyName];
 
         // Determine if the value is an NSNull.
         if (value == [NSNull null]) {
@@ -79,12 +139,7 @@
             value = [[property.classDataType alloc] initWithDictionary:value];
         } else if ([property.classDataType isSubclassOfClass:[NSArray class]]) {
             // Determine if the array conforms to a protocol that has a model with the same name.
-            Class modelClass = nil;
-            for (NSString *protocolName in property.protocolNames) {
-                modelClass = NSClassFromString(protocolName);
-                if (modelClass)
-                    break;
-            }
+            Class modelClass = [self __modelClassFromPropertyProtocolNames:property.protocolNames];
             if (modelClass) {
                 // Instantiate models from the array data.
                 if (![value isKindOfClass:[NSArray class]]) {
@@ -195,6 +250,53 @@
             }
         }
     }
+}
+
+- (NSArray *)__properties
+{
+    NSArray *properties = objc_getAssociatedObject(self.class, &SLModelPropertiesKey);
+    if (!properties) {
+        properties = [SLFunctions propertiesForClass:self.class recursivelyUpToClass:[SLModel class]];
+        objc_setAssociatedObject(self.class, &SLModelPropertiesKey, properties, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return properties;
+}
+
+- (NSDictionary *)__propertyNameMappingForProperties:(NSArray *)properties
+{
+    NSDictionary *propertyNameMappingDictionary = objc_getAssociatedObject(self.class, &SLModelPropertyNameMappingDictionaryKey);
+    if (!propertyNameMappingDictionary) {
+        // Determine the property name mapping dictionaries.
+        NSDictionary *dictionaryForMappingPropertyNames = [self dictionaryForMappingPropertyNames];
+        
+        SLModelPropertyNameTransform *transform = [SLModelPropertyNameTransform sharedInstance];
+        
+        NSMutableDictionary *propertyNameTransformerDictionary = nil;
+        id<SLModelPropertyNameTransformer> transformer = [transform transformerForModelClass:self.class] ?: transform.defaultTransformer;
+        if (transformer && transformer != transform.nullTransformer) {
+            propertyNameTransformerDictionary = [NSMutableDictionary new];
+            for (SLObjectProperty *property in properties)
+                propertyNameTransformerDictionary[property.name] = [transformer dictionaryKeyForProperty:property];
+        }
+        
+        // Set the property name mappings.
+        NSMutableDictionary *transformDictionary = [NSMutableDictionary dictionaryWithDictionary:propertyNameTransformerDictionary];
+        [transformDictionary addEntriesFromDictionary:dictionaryForMappingPropertyNames];
+    
+        propertyNameMappingDictionary = transformDictionary;
+        objc_setAssociatedObject(self.class, &SLModelPropertyNameMappingDictionaryKey, propertyNameMappingDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return propertyNameMappingDictionary;
+}
+
+- (Class)__modelClassFromPropertyProtocolNames:(NSArray *)protocolNames
+{
+    for (NSString *protocolName in protocolNames) {
+        Class modelClass = NSClassFromString(protocolName);
+        if ([modelClass isSubclassOfClass:[SLModel class]])
+            return modelClass;
+    }
+    return nil;
 }
 
 @end

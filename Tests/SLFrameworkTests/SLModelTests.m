@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 #import <XCTest/XCTest.h>
+#import <objc/runtime.h>
 
 #import "SLFramework.h"
 
@@ -57,6 +58,7 @@
 @property (nonatomic, readonly) NSMutableArray *mutableArray;
 @property (nonatomic, readonly) NSDictionary *dictionary;
 @property (nonatomic, readonly) NSMutableDictionary *mutableDictionary;
+@property (nonatomic, readonly) NSURL *imageURL;
 
 @end
 @implementation SLModelWithNonNativeDataTypes @end
@@ -79,7 +81,7 @@
 @end
 @implementation SLModelWithInheritanceA @end
 
-@protocol SLModelWithInheritanceB @end
+@protocol SLModelWithInheritanceB <SLModel> @end
 @interface SLModelWithInheritanceB : SLModelWithInheritanceA
 
 @property (nonatomic, readonly) NSString *string;
@@ -97,7 +99,7 @@
 
 @interface SLModelWithIgnoredProperty : SLModel
 
-@property (nonatomic, readonly) NSNumber<SLModelIgnored> *ignored;
+@property (nonatomic) NSNumber<SLModelIgnored> *ignored;
 
 @end
 @implementation SLModelWithIgnoredProperty @end
@@ -111,6 +113,10 @@
 
 - (void)tearDown
 {
+    SLModelPropertyNameTransform *transformer = [SLModelPropertyNameTransform sharedInstance];
+    transformer.defaultTransformer = nil;
+    [transformer removeAllTransformers];
+
     [super tearDown];
 }
 
@@ -151,6 +157,7 @@
 
 - (void)testNonNatives
 {
+    NSURL *imageURL = [NSURL URLWithString:@"https://www.google.fi/webhp?tab=ww&ei=HxYmU8qEOM_34QTB-oCoCQ&ved=0CA8Q1S4#q=aojerpapeojroapj+eporjaeprjapejrapeojrapeojrapejrpaojerpaojerpoajerjaeojraepojraopjeropjaerojaeoprjaopejrae&safe=off"];
     NSDictionary *dictionary = @{
         @"number": @(100),
         @"string": @"foo",
@@ -158,7 +165,8 @@
         @"array": @[@"foo", @"bar"],
         @"mutableArray": @[@"foo", @"bar"],
         @"dictionary": @{ @"foo": @"bar" },
-        @"mutableDictionary": @{ @"foo": @"bar" }
+        @"mutableDictionary": @{ @"foo": @"bar" },
+        @"imageURL": imageURL
     };
     SLModelWithNonNativeDataTypes *object = [[SLModelWithNonNativeDataTypes alloc] initWithDictionary:dictionary];
     XCTAssert([object.number isKindOfClass:[NSNumber class]]);
@@ -178,6 +186,7 @@
     XCTAssert([object.mutableDictionary isKindOfClass:[NSMutableDictionary class]]);
     XCTAssert([object.mutableDictionary isEqualToDictionary:dictionary[@"mutableDictionary"]]);
     object.mutableDictionary[@"mutable"] = @"baz";
+    XCTAssert([object.imageURL isEqual:imageURL]);
 }
 
 - (void)testRequiredProperty
@@ -221,6 +230,49 @@
     SLModelWithInheritanceB *second = object.array[1];
     XCTAssert([first.baseString isEqualToString:@"bar"]);
     XCTAssert([second.baseString isEqualToString:@"baz"]);
+}
+
+- (void)testDictionaryPresentation
+{
+    NSURL *imageURL = [NSURL URLWithString:@"https://www.google.fi/webhp?tab=ww&ei=HxYmU8qEOM_34QTB-oCoCQ&ved=0CA8Q1S4#q=aojerpapeojroapj+eporjaeprjapejrapeojrapeojrapejrpaojerpaojerpoajerjaeojraepojraopjeropjaerojaeoprjaopejrae&safe=off"];
+    NSDictionary *dictionary = @{
+        @"number": @(100),
+        @"string": @"foo",
+        @"mutableString": @"bar",
+        @"array": @[@"foo", @"bar"],
+        @"mutableArray": @[@"foo", @"bar"],
+        @"dictionary": @{ @"foo": @"bar" },
+        @"mutableDictionary": @{ @"foo": @"bar" },
+        @"imageURL": imageURL
+    };
+    SLModelWithNonNativeDataTypes *object = [[SLModelWithNonNativeDataTypes alloc] initWithDictionary:dictionary];
+    
+    NSDictionary *results = [object dictionaryPresentation];
+    XCTAssert([results isEqualToDictionary:dictionary]);
+
+    SLModelWithIgnoredProperty *ignored = [[SLModelWithIgnoredProperty alloc] initWithDictionary:nil];
+    ignored.ignored = @(50);
+    XCTAssert(!ignored.dictionaryPresentation.allKeys.count);
+}
+
+- (void)testPropertyNameTransform
+{
+    objc_removeAssociatedObjects([SLModelWithAnotherModelInside class]);
+    objc_removeAssociatedObjects([SLModelWithNonNativeDataTypes class]);
+
+    SLModelPropertyNameTransform *transformer = [SLModelPropertyNameTransform sharedInstance];
+
+    transformer.defaultTransformer = transformer.snakeCaseTransformer;
+    [transformer registerTransformer:transformer.nullTransformer forModelClass:[SLModelWithAnotherModelInside class]];
+    
+    NSURL *imageURL = [NSURL URLWithString:@"https://www.google.fi"];
+    SLModelWithNonNativeDataTypes *object = [[SLModelWithNonNativeDataTypes alloc] initWithDictionary:@{ @"image_url": imageURL }];
+    XCTAssert([object.imageURL.absoluteString isEqualToString:imageURL.absoluteString]);
+
+    [self testAnotherModelInside];
+
+    objc_removeAssociatedObjects([SLModelWithAnotherModelInside class]);
+    objc_removeAssociatedObjects([SLModelWithNonNativeDataTypes class]);
 }
 
 @end
