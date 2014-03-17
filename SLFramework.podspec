@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '6.0'
 
+  s.header_dir = 'SLFramework'
   s.public_header_files = 'SLFramework/*.h'
   s.source_files = 'SLFramework/*.m'
 
