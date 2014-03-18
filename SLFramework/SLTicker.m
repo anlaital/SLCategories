@@ -88,7 +88,7 @@
         [self __createProxy];
         [_proxy queueTick];
     } else {
-        _proxy = nil;
+        [self __deleteProxy];
     }
 }
 
@@ -108,7 +108,7 @@
     
     _backgroundTime = [SLFunctions uptime];
 
-    _proxy = nil;
+    [self __deleteProxy];
 }
 
 - (void)didReceiveApplicationDidBecomeActiveNotification:(NSNotification *)note
@@ -134,6 +134,12 @@
     _proxy = [SLTickerProxy new];
     _proxy.delegate = self;
     _proxy.tickInterval = _tickInterval;
+}
+
+- (void)__deleteProxy
+{
+    _proxy.delegate = nil;
+    _proxy = nil;
 }
 
 @end
