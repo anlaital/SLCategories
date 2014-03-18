@@ -25,9 +25,41 @@
 #import "SLTicker.h"
 #import "SLFunctions.h"
 
+@interface SLTickerProxy : NSObject
+
+@property (nonatomic, weak) id<SLTickerProxyDelegate> delegate;
+@property (nonatomic) NSTimeInterval tickInterval;
+
+- (void)queueTick;
+
+@end
+
+@implementation SLTickerProxy
+
+- (void)queueTick
+{
+    [self performSelector:@selector(__performTick) withObject:nil afterDelay:self.tickInterval inModes:@[NSRunLoopCommonModes]];
+}
+
+- (void)dealloc
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+}
+
+- (void)__performTick
+{
+    if (_delegate) {
+        [_delegate performTick];
+        [self queueTick];
+    }
+}
+
+@end
+
 @implementation SLTicker
 {
     time_t _backgroundTime;
+    SLTickerProxy *_proxy;
 }
 
 - (id)init
@@ -46,8 +78,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    self.ticking = NO;
 }
 
 - (void)setTicking:(BOOL)ticking
@@ -55,10 +85,18 @@
     if (_ticking == ticking) return;
     _ticking = ticking;
     if (_ticking) {
-        [self __queueTick];
+        [self __createProxy];
+        [_proxy queueTick];
     } else {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+        _proxy = nil;
     }
+}
+
+#pragma mark - SLTickerProxyDelegate
+
+- (void)performTick
+{
+    [_delegate ticker:self didTick:1];
 }
 
 #pragma mark - NSNotificationCenter
@@ -69,8 +107,8 @@
         return;
     
     _backgroundTime = [SLFunctions uptime];
-    
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+
+    _proxy = nil;
 }
 
 - (void)didReceiveApplicationDidBecomeActiveNotification:(NSNotification *)note
@@ -84,21 +122,18 @@
     time_t delta = current - _backgroundTime;
     
     [_delegate ticker:self didTick:((CGFloat)delta / self.tickInterval)];
-    
-    [self __queueTick];
+
+    [self __createProxy];
+    [_proxy queueTick];
 }
 
 #pragma mark - Private
 
-- (void)__performTick
+- (void)__createProxy
 {
-    [_delegate ticker:self didTick:1];
-    [self __queueTick];
-}
-
-- (void)__queueTick
-{
-    [self performSelector:@selector(__performTick) withObject:nil afterDelay:self.tickInterval inModes:@[NSRunLoopCommonModes]];
+    _proxy = [SLTickerProxy new];
+    _proxy.delegate = self;
+    _proxy.tickInterval = _tickInterval;
 }
 
 @end

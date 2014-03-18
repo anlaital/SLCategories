@@ -30,7 +30,13 @@
 
 @end
 
-@interface SLTicker : NSObject
+@protocol SLTickerProxyDelegate <NSObject>
+
+- (void)performTick;
+
+@end
+
+@interface SLTicker : NSObject <SLTickerProxyDelegate>
 
 /** Delegate for the ticker. */
 @property (nonatomic, weak) id<SLTickerDelegate> delegate;
