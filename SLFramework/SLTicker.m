@@ -55,7 +55,7 @@
     if (_ticking == ticking) return;
     _ticking = ticking;
     if (_ticking) {
-        [self queueTick];
+        [self __queueTick];
     } else {
         [NSObject cancelPreviousPerformRequestsWithTarget:self];
     }
@@ -85,19 +85,20 @@
     
     [_delegate ticker:self didTick:((CGFloat)delta / self.tickInterval)];
     
-    [self queueTick];
+    [self __queueTick];
 }
 
 #pragma mark - Private
 
-- (void)tick
+- (void)__performTick
 {
     [_delegate ticker:self didTick:1];
+    [self __queueTick];
 }
 
-- (void)queueTick
+- (void)__queueTick
 {
-    [self performSelector:@selector(tick) withObject:nil afterDelay:self.tickInterval inModes:@[NSRunLoopCommonModes]];
+    [self performSelector:@selector(__performTick) withObject:nil afterDelay:self.tickInterval inModes:@[NSRunLoopCommonModes]];
 }
 
 @end
