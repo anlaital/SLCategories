@@ -22,7 +22,12 @@
 
 #import "SLAcknowledgementsViewController.h"
 
+#import <MMMarkdown.h>
+
 @implementation SLAcknowledgementsViewController
+{
+    UITextView *_markdownView;
+}
 
 - (id)init
 {
@@ -35,8 +40,13 @@
         if (!markdownPath)
             markdownPath = [[NSBundle mainBundle] pathForResource:@"Pods-acknowledgements" ofType:@"markdown"];
         NSString *markdown = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:markdownPath] encoding:NSUTF8StringEncoding];
+        NSString *markdownHTML = [MMMarkdown HTMLStringWithMarkdown:markdown error:nil];
         
-        _markdownView = [[BPMarkdownView alloc] initWithFrame:self.view.bounds markdown:markdown];
+        NSDictionary *options = @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType };
+        NSAttributedString *attributedMarkdown = [[NSAttributedString alloc] initWithData:[markdownHTML dataUsingEncoding:NSUTF8StringEncoding] options:options documentAttributes:nil error:nil];
+        
+        _markdownView = [[UITextView alloc] initWithFrame:self.view.bounds];
+        _markdownView.attributedText = attributedMarkdown;
         [self.view addSubview:_markdownView];
     }
     return self;

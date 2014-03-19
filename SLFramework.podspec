@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   s.source_files = 'SLFramework/*.{h,m}'
 
   s.dependency 'ISO8601DateFormatter'
-  s.dependency 'Bypass'
+  s.dependency 'MMMarkdown'
 end

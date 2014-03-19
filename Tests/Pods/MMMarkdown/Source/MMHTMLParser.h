@@ -1,6 +1,8 @@
-// SLAcknowledgementsViewController.h
 //
-// Copyright (c) 2014 Antti Laitala (https://github.com/anlaital)
+//  MMHTMLParser.h
+//  MMMarkdown
+//
+//  Copyright (c) 2012 Matt Diephouse.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -8,10 +10,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-//
+// 
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-//
+// 
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,14 +21,18 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+//
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface SLAcknowledgementsViewController : UINavigationController
 
-/**
- Initializes the object by reading the markdown from the file specified by `markdownPath`. The default is `Pods-acknowledgements.markdown` in the main bundle.
- */
-- (id)initWithMarkdownPath:(NSString *)markdownPath;
+@class MMElement;
+@class MMScanner;
+
+@interface MMHTMLParser : NSObject
+
+- (MMElement *)parseBlockTagWithScanner:(MMScanner *)scanner;
+- (MMElement *)parseCommentWithScanner:(MMScanner *)scanner;
+- (MMElement *)parseInlineTagWithScanner:(MMScanner *)scanner;
 
 @end
