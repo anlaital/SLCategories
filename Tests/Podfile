@@ -4,4 +4,3 @@ workspace '../SLFramework'
 xcodeproj 'SLFrameworkTests'
 
 pod 'ISO8601DateFormatter'
-pod 'GHMarkdownParser'

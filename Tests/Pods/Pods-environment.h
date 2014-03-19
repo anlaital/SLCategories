@@ -6,12 +6,6 @@
 // project.
 
 
-// GHMarkdownParser
-#define COCOAPODS_POD_AVAILABLE_GHMarkdownParser
-#define COCOAPODS_VERSION_MAJOR_GHMarkdownParser 0
-#define COCOAPODS_VERSION_MINOR_GHMarkdownParser 1
-#define COCOAPODS_VERSION_PATCH_GHMarkdownParser 1
-
 // ISO8601DateFormatter
 #define COCOAPODS_POD_AVAILABLE_ISO8601DateFormatter
 #define COCOAPODS_VERSION_MAJOR_ISO8601DateFormatter 0

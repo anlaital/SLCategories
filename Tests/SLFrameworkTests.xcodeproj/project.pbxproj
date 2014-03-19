@@ -17,7 +17,6 @@
 		73716CE018D342BC004409A1 /* SLModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73716CDB18D342BC004409A1 /* SLModelTests.m */; };
 		73934CDE18D42BFF00D58E5C /* NSObject+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 73934CDD18D42BFF00D58E5C /* NSObject+SLFramework.m */; };
 		73934D3318D61F6B00D58E5C /* SLModelPropertyNameTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 73934D3218D61F6B00D58E5C /* SLModelPropertyNameTransform.m */; };
-		73934D4D18D9AFED00D58E5C /* SLAcknowledgementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73934D4C18D9AFED00D58E5C /* SLAcknowledgementsViewController.m */; };
 		73934D4F18D9B00200D58E5C /* Pods-acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 73934D4E18D9B00200D58E5C /* Pods-acknowledgements.markdown */; };
 		73D19E9918D3455400789C9E /* NSString+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D19E8718D3455400789C9E /* NSString+SLFramework.m */; };
 		73D19E9A18D3455400789C9E /* SLError.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D19E8918D3455400789C9E /* SLError.m */; };
@@ -49,8 +48,6 @@
 		73934CDF18D5D49A00D58E5C /* SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLFramework.h; path = ../SLFramework/SLFramework.h; sourceTree = "<group>"; };
 		73934D3118D61F6B00D58E5C /* SLModelPropertyNameTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLModelPropertyNameTransform.h; path = ../SLFramework/SLModelPropertyNameTransform.h; sourceTree = "<group>"; };
 		73934D3218D61F6B00D58E5C /* SLModelPropertyNameTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLModelPropertyNameTransform.m; path = ../SLFramework/SLModelPropertyNameTransform.m; sourceTree = "<group>"; };
-		73934D4B18D9AFED00D58E5C /* SLAcknowledgementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLAcknowledgementsViewController.h; path = ../SLFramework/SLAcknowledgementsViewController.h; sourceTree = "<group>"; };
-		73934D4C18D9AFED00D58E5C /* SLAcknowledgementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLAcknowledgementsViewController.m; path = ../SLFramework/SLAcknowledgementsViewController.m; sourceTree = "<group>"; };
 		73934D4E18D9B00200D58E5C /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Pods-acknowledgements.markdown"; path = "Pods/Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
 		73D19E8618D3455400789C9E /* NSString+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SLFramework.h"; path = "../SLFramework/NSString+SLFramework.h"; sourceTree = "<group>"; };
 		73D19E8718D3455400789C9E /* NSString+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SLFramework.m"; path = "../SLFramework/NSString+SLFramework.m"; sourceTree = "<group>"; };
@@ -110,8 +107,6 @@
 		7343DDB818C396DB00230564 = {
 			isa = PBXGroup;
 			children = (
-				73934D4B18D9AFED00D58E5C /* SLAcknowledgementsViewController.h */,
-				73934D4C18D9AFED00D58E5C /* SLAcknowledgementsViewController.m */,
 				73934D3118D61F6B00D58E5C /* SLModelPropertyNameTransform.h */,
 				73934D3218D61F6B00D58E5C /* SLModelPropertyNameTransform.m */,
 				73934CDF18D5D49A00D58E5C /* SLFramework.h */,
@@ -281,7 +276,6 @@
 				73D19E9B18D3455400789C9E /* SLFunctions.m in Sources */,
 				73D19EA018D3455400789C9E /* UIView+SLFramework.m in Sources */,
 				73D19E9C18D3455400789C9E /* SLLogger.m in Sources */,
-				73934D4D18D9AFED00D58E5C /* SLAcknowledgementsViewController.m in Sources */,
 				73716CDE18D342BC004409A1 /* SLFunctionsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

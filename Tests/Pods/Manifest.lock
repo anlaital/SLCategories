@@ -1,13 +1,10 @@
 PODS:
-  - GHMarkdownParser (0.1.1)
   - ISO8601DateFormatter (0.7)
 
 DEPENDENCIES:
-  - GHMarkdownParser
   - ISO8601DateFormatter
 
 SPEC CHECKSUMS:
-  GHMarkdownParser: ef0fa1a49d0a366e876adaffde08dca911812dfa
   ISO8601DateFormatter: 00944e437ea647f4244454ce8809d313861d08de
 
 COCOAPODS: 0.29.0
