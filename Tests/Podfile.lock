@@ -1,10 +1,13 @@
 PODS:
+  - Bypass (1.0.1)
   - ISO8601DateFormatter (0.7)
 
 DEPENDENCIES:
+  - Bypass
   - ISO8601DateFormatter
 
 SPEC CHECKSUMS:
+  Bypass: 05609ba2727ae711aa82256e7600b7ac7a174927
   ISO8601DateFormatter: 00944e437ea647f4244454ce8809d313861d08de
 
 COCOAPODS: 0.29.0
