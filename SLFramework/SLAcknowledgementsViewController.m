@@ -22,7 +22,7 @@
 
 #import "SLAcknowledgementsViewController.h"
 
-#import <MMMarkdown.h>
+#import <GHMarkdownParser.h>
 
 @implementation SLAcknowledgementsViewController
 {
@@ -40,7 +40,7 @@
         if (!markdownPath)
             markdownPath = [[NSBundle mainBundle] pathForResource:@"Pods-acknowledgements" ofType:@"markdown"];
         NSString *markdown = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:markdownPath] encoding:NSUTF8StringEncoding];
-        NSString *markdownHTML = [MMMarkdown HTMLStringWithMarkdown:markdown error:nil];
+        NSString *markdownHTML = [GHMarkdownParser HTMLStringFromMarkdownString:markdown];
         
         NSDictionary *options = @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType };
         NSAttributedString *attributedMarkdown = [[NSAttributedString alloc] initWithData:[markdownHTML dataUsingEncoding:NSUTF8StringEncoding] options:options documentAttributes:nil error:nil];

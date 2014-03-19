@@ -6,15 +6,15 @@
 // project.
 
 
+// GHMarkdownParser
+#define COCOAPODS_POD_AVAILABLE_GHMarkdownParser
+#define COCOAPODS_VERSION_MAJOR_GHMarkdownParser 0
+#define COCOAPODS_VERSION_MINOR_GHMarkdownParser 1
+#define COCOAPODS_VERSION_PATCH_GHMarkdownParser 1
+
 // ISO8601DateFormatter
 #define COCOAPODS_POD_AVAILABLE_ISO8601DateFormatter
 #define COCOAPODS_VERSION_MAJOR_ISO8601DateFormatter 0
 #define COCOAPODS_VERSION_MINOR_ISO8601DateFormatter 7
 #define COCOAPODS_VERSION_PATCH_ISO8601DateFormatter 0
-
-// MMMarkdown
-#define COCOAPODS_POD_AVAILABLE_MMMarkdown
-#define COCOAPODS_VERSION_MAJOR_MMMarkdown 0
-#define COCOAPODS_VERSION_MINOR_MMMarkdown 3
-#define COCOAPODS_VERSION_PATCH_MMMarkdown 0
 
