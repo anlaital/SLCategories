@@ -10,6 +10,7 @@
 		7310E02B18C73BA700DB5EF0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7343DDE618C396DB00230564 /* XCTest.framework */; };
 		7310E02C18C73BA700DB5EF0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7343DDC418C396DB00230564 /* Foundation.framework */; };
 		7310E02D18C73BA700DB5EF0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7343DDC818C396DB00230564 /* UIKit.framework */; };
+		7364E80518DEAFCF00C71890 /* CALayer+SLFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 7364E80418DEAFCF00C71890 /* CALayer+SLFramework.m */; };
 		73716CDC18D342BC004409A1 /* SLFramework+NSStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73716CD718D342BC004409A1 /* SLFramework+NSStringTests.m */; };
 		73716CDD18D342BC004409A1 /* SLFramework+UIColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73716CD818D342BC004409A1 /* SLFramework+UIColorTests.m */; };
 		73716CDE18D342BC004409A1 /* SLFunctionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73716CD918D342BC004409A1 /* SLFunctionsTests.m */; };
@@ -38,6 +39,8 @@
 		7343DDC618C396DB00230564 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7343DDC818C396DB00230564 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7343DDE618C396DB00230564 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7364E80318DEAFCF00C71890 /* CALayer+SLFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CALayer+SLFramework.h"; path = "../SLFramework/CALayer+SLFramework.h"; sourceTree = "<group>"; };
+		7364E80418DEAFCF00C71890 /* CALayer+SLFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CALayer+SLFramework.m"; path = "../SLFramework/CALayer+SLFramework.m"; sourceTree = "<group>"; };
 		73716CD718D342BC004409A1 /* SLFramework+NSStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SLFramework+NSStringTests.m"; path = "SLFrameworkTests/SLFramework+NSStringTests.m"; sourceTree = SOURCE_ROOT; };
 		73716CD818D342BC004409A1 /* SLFramework+UIColorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SLFramework+UIColorTests.m"; path = "SLFrameworkTests/SLFramework+UIColorTests.m"; sourceTree = SOURCE_ROOT; };
 		73716CD918D342BC004409A1 /* SLFunctionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLFunctionsTests.m; path = SLFrameworkTests/SLFunctionsTests.m; sourceTree = SOURCE_ROOT; };
@@ -107,6 +110,8 @@
 		7343DDB818C396DB00230564 = {
 			isa = PBXGroup;
 			children = (
+				7364E80318DEAFCF00C71890 /* CALayer+SLFramework.h */,
+				7364E80418DEAFCF00C71890 /* CALayer+SLFramework.m */,
 				73934D3118D61F6B00D58E5C /* SLModelPropertyNameTransform.h */,
 				73934D3218D61F6B00D58E5C /* SLModelPropertyNameTransform.m */,
 				73934CDF18D5D49A00D58E5C /* SLFramework.h */,
@@ -271,6 +276,7 @@
 				73716CDF18D342BC004409A1 /* SLLoggerTests.m in Sources */,
 				73D19E9F18D3455400789C9E /* UIColor+SLFramework.m in Sources */,
 				73716CE018D342BC004409A1 /* SLModelTests.m in Sources */,
+				7364E80518DEAFCF00C71890 /* CALayer+SLFramework.m in Sources */,
 				73D19E9A18D3455400789C9E /* SLError.m in Sources */,
 				73716CDC18D342BC004409A1 /* SLFramework+NSStringTests.m in Sources */,
 				73D19E9B18D3455400789C9E /* SLFunctions.m in Sources */,

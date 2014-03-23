@@ -1,4 +1,4 @@
-// UIView+SLFramework.h
+// SLFramework+CALayer.h
 //
 // Copyright (c) 2014 Antti Laitala (https://github.com/anlaital)
 //
@@ -20,61 +20,61 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface UIView (SLFramework)
+@interface CALayer (SLFramework)
 
 /**
- Shorthand for `view.frame.origin.x`.
+ Shorthand for `layer.frame.origin.x`.
  
- @return The x origin of the view's frame.
+ @return The x origin of the layer's frame.
  */
 - (CGFloat)x;
 
 /**
- Shorthand for `view.frame.origin.y`.
+ Shorthand for `layer.frame.origin.y`.
  
- @return The y origin of the view's frame.
+ @return The y origin of the layer's frame.
  */
 - (CGFloat)y;
 
 /**
- Shorthand for `view.frame.size.width`.
+ Shorthand for `layer.frame.size.width`.
  
- @return The width of the view's frame.
+ @return The width of the layer's frame.
  */
 - (CGFloat)width;
 
 /**
- Shorthand for `view.frame.size.height`.
+ Shorthand for `layer.frame.size.height`.
  
- @return The height of the view's frame.
+ @return The height of the layer's frame.
  */
 - (CGFloat)height;
 
 /**
- Shorthand for `view.frame.origin.x = x`.
+ Shorthand for `layer.frame.origin.x = x`.
  
  @param x The x origin to set.
  */
 - (void)setX:(CGFloat)x;
 
 /**
- Shorthand for `view.frame.origin.y = y`.
-
+ Shorthand for `layer.frame.origin.y = y`.
+ 
  @param x The y origin to set.
  */
 - (void)setY:(CGFloat)y;
 
 /**
- Shorthand for `view.frame.size.width = width`.
-
+ Shorthand for `layer.frame.size.width = width`.
+ 
  @param x The width to set.
  */
 - (void)setWidth:(CGFloat)width;
 
 /**
- Shorthand for `view.frame.size.height = height`.
+ Shorthand for `layer.frame.size.height = height`.
  
  @param x The height to set.
  */
