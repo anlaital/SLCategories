@@ -36,5 +36,6 @@
 #import "NSString+SLFramework.h"
 #import "UIColor+SLFramework.h"
 #import "UIView+SLFramework.h"
+#import "CALayer+SLFramework.h"
 
 #endif
