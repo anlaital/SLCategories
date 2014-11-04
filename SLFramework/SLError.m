@@ -30,7 +30,7 @@ NSString *const SLErrorObject = @"SLErrorObject";
 
 + (instancetype)errorWithUserInfo:(NSDictionary *)userInfo
 {
-    return [NSError errorWithDomain:SLErrorDomain code:0 userInfo:userInfo];
+    return [self errorWithDomain:SLErrorDomain code:0 userInfo:userInfo];
 }
 
 @end
