@@ -24,6 +24,17 @@
 
 #ifndef __OPTIMIZE__
 
+#import <sys/sysctl.h>
+
+extern BOOL SLDebugging()
+{
+    int mib[4] = { CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid() };
+    struct kinfo_proc info = { 0 };
+    size_t size = sizeof(info);
+    sysctl(mib, sizeof (mib) / sizeof (*mib), &info, &size, NULL, 0);
+    return (info.kp_proc.p_flag & P_TRACED) != 0;
+}
+
 @implementation SLLogger
 
 + (instancetype)sharedInstance
@@ -39,7 +50,7 @@
 - (id)init
 {
     if (self = [super init]) {
-        _options = SLLoggerOptionPrintMethodName | SLLoggerOptionFileLoggingEnabled;
+        _options = kNilOptions;
     }
     return self;
 }
