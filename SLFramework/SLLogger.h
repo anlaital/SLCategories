@@ -38,7 +38,7 @@ extern BOOL SLDebugging();
 #define SLLog(format, ...) [[SLLogger sharedInstance] log:(format) fileName:__FILE__ lineNumber:__LINE__ methodName:__FUNCTION__, ##__VA_ARGS__]
 
 #define SLDie(format, ...) do { \
-    [SLLogger sharedInstance] log:(format) fileName:__FILE__ lineNumber:__LINE__ methodName:__FUNCTION__, ##__VA_ARGS__]; \
+    [[SLLogger sharedInstance] log:(format) fileName:__FILE__ lineNumber:__LINE__ methodName:__FUNCTION__, ##__VA_ARGS__]; \
     if (SLDebugging()) { __builtin_trap(); } \
 } while (NO)
 
