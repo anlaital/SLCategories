@@ -103,6 +103,8 @@
 
 - (void)didReceiveApplicationWillResignActiveNotification:(NSNotification *)note
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+
     if (!self.isTicking)
         return;
     
@@ -121,10 +123,10 @@
     time_t current = [SLFunctions uptime];
     time_t delta = current - _backgroundTime;
     
-    [_delegate ticker:self didTick:((CGFloat)delta / self.tickInterval)];
-
     [self __createProxy];
     [_proxy queueTick];
+
+    [_delegate ticker:self didTick:((CGFloat)delta / self.tickInterval)];
 }
 
 #pragma mark - Private
