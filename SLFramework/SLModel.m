@@ -22,7 +22,7 @@
 
 #import <objc/runtime.h>
 
-#import <ISO8601DateFormatter.h>
+#import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 
 #import "SLModel.h"
 #import "SLModelPropertyNameTransform.h"
