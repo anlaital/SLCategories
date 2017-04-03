@@ -88,7 +88,7 @@
 
 - (SLColorComponents)components
 {
-    SLColorComponents components;
+    SLColorComponents components = {};
     const CGFloat *c = CGColorGetComponents(self.CGColor);
     switch (CGColorSpaceGetModel(CGColorGetColorSpace(self.CGColor))) {
         case kCGColorSpaceModelMonochrome:
